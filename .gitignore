@@ -1,0 +1,7 @@
+.venv/
+tmp/
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.toc
+audit/build/

@@ -1,0 +1,72 @@
+\section{Products, sums, and volume expansion}\label{sec:volumes}
+
+The endpoint laws do not by themselves describe a product over a growing number of singular values. The adjugate identity supplies a different route, valid even at zero determinants. Throughout this section $n\ge4$ and singular values are those of $B_n$ in decreasing order.
+
+\begin{theorem}[Products after removing the smallest axes]\label{vol:product}
+The following finite estimate holds:
+\begin{equation}\label{vol:finite}
+ \left|\prod_{i=1}^{n-1}\sigma_i-\sqrt{Q(n)}W_n\right|
+ \le |M(n)|\norm{C_n}_2.
+\end{equation}
+Consequently, along all integers $n$,
+\begin{equation}\label{vol:main}
+ \prod_{i=1}^{n-1}\sigma_i\sim\sqrt{Q(n)}W_n
+ =n^{3/2}\exp\bigl(-(1+o(1))s(n)\bigr).
+\end{equation}
+If $M(n)=0$, the first product in \eqref{vol:main} equals $\sqrt{Q(n)}W_n$ exactly. For every fixed integer $r\ge1$,
+\begin{equation}\label{vol:codimension}
+ \prod_{i=1}^{n-r}\sigma_i
+ \sim\sqrt{Q(n)}W_n\,n^{(r-1)/2}
+                  \prod_{j=1}^{r-1}\sqrt{\lambda_j(L)},
+\end{equation}
+where an empty product equals one and $L$ is the compact operator of Theorem~\ref{spec:bottom}. Also
+\begin{equation}\label{vol:middle}
+ \prod_{i=2}^{n-1}\sigma_i\sim\sqrt{c_0}\,W_n.
+\end{equation}
+\end{theorem}
+\begin{proof}
+For a real $n$ by $n$ matrix $T$, the operator norm of $\adj(T)$ is the product of its largest $n-1$ singular values. For an invertible matrix this follows from $\adj(T)=\det(T)T^{-1}$ and the singular-value decomposition. For a singular matrix it follows by continuity, or directly from the induced map on alternating products of $n-1$ vectors. Equation~\eqref{def:adjugate} and the triangle and reverse triangle inequalities therefore give \eqref{vol:finite}, since
+\[
+ \norm{\muvec_nw_n^T}_2=\norm{\muvec_n}_2\norm{w_n}_2=\sqrt{Q(n)}W_n.
+\]
+Theorem~\ref{spec:compact} gives $\norm{C_n}_2=O(\sqrt n)$, while Theorem~\ref{arith:energy} and the classical Mertens bound imply
+\[
+ \frac{|M(n)|\norm{C_n}_2}{\sqrt{Q(n)}W_n}
+ \ll\frac{|M(n)|}{W_n}\longrightarrow0.
+\]
+This proves \eqref{vol:main} without excluding zero-Mertens indices. At such an index the error term in \eqref{vol:finite} is zero. Divide the product in \eqref{vol:main} by the $r-1$ factors $\sigma_{n-1},\ldots,\sigma_{n-r+1}$ and apply the fixed-index limits in Theorem~\ref{spec:bottom} to obtain \eqref{vol:codimension}. This division is legitimate: the rank-one perturbation of the invertible $A_n$ has rank at least $n-1$. Finally divide \eqref{vol:main} by $\sigma_1\sim\sqrt n$ to prove \eqref{vol:middle}.
+\end{proof}
+
+The product of the largest $m$ singular values is the maximal factor by which a linear map expands an $m$-dimensional volume. More explicitly, for an orthonormal $m$-tuple $x_1,\ldots,x_m$, the squared volume of the image parallelotope is the determinant of the Gram matrix $((B_nx_i)^T(B_nx_j))_{ij}$; its maximum is $\prod_{i=1}^m\sigma_i^2$. Thus \eqref{vol:codimension} is a volume law of fixed codimension. It does not follow by multiplying a number of fixed-index equivalents that increases with $n$.
+
+\begin{theorem}[First and second singular-value sums]\label{vol:sums}
+For every $n\ge2$,
+\begin{equation}\label{vol:second}
+ \sum_{i=1}^n\sigma_i^2=2n+Q(n)-2.
+\end{equation}
+For every fixed $H>0$,
+\begin{equation}\label{vol:first}
+ \sum_{i=1}^n\sigma_i=n+O_H\left(\frac{n}{(\log n)^H}\right).
+\end{equation}
+Writing $k=k_n$, the growing upper band satisfies
+\begin{equation}\label{vol:band}
+ \sum_{i=2}^{k+1}\sigma_i^2\sim c_0n.
+\end{equation}
+Every fixed number of terms in this band contributes only $O(n/\log n)$.
+\end{theorem}
+\begin{proof}
+The sum of squared singular values is the squared Frobenius norm, so \eqref{vol:second} is \eqref{def:frobenius}. By Theorem~\ref{spec:core}, exactly $n-r_n$ singular values equal one, where $r_n=2k_n+1$. Their complement has squared sum $n+Q(n)-2+r_n$. Cauchy--Schwarz gives
+\[
+ \sum_i\sigma_i\le n-r_n+
+       \sqrt{r_n\bigl(n+Q(n)-2+r_n\bigr)}.
+\]
+The reverse bound $\sum_i\sigma_i\ge|\tr B_n|=n$ follows directly from a singular-value decomposition: if $B_n=U\Sigma V^T$, then $\tr B_n=\sum_i\sigma_i(V^TU)_{ii}$ and $|(V^TU)_{ii}|\le1$. Apply $k_n=O_{2H}(n/(\log n)^{2H})$ to obtain \eqref{vol:first}.
+
+The $k_n$ singular values below one have total squared sum at most $k_n=o(n)$. The exact unit values contribute $n-2k_n-1=n+o(n)$, and the largest value contributes $\sigma_1^2=n+o(n)$. Subtract these contributions from \eqref{vol:second}; the remaining sum is $Q(n)+o(n)\sim c_0n$. The last assertion follows from Theorem~\ref{spec:upper} for each fixed index.
+\end{proof}
+
+In particular the empirical proportion of singular values different from one tends to zero, and their ordinary average tends to one, but their mean square tends to $2+c_0$. This is possible because a small proportion of large values carries a macroscopic squared sum. The full determinant remains
+\[
+ |M(n)|=\sigma_n\prod_{i=1}^{n-1}\sigma_i.
+\]
+Combining this identity with the smallest-value equivalent of Theorem~\ref{spec:minimum} only recovers an existing relation. An improved arithmetic estimate would require control of the exceptional thickness that is independent of the Mertens estimate already used to isolate it.

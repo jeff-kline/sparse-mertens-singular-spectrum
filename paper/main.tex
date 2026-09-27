@@ -1,0 +1,47 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,longtable,array}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={The singular spectrum of a sparse Mertens matrix},pdfauthor={Jeffery Kline},pdfsubject={Quarantined rough draft, September 27, 2026}}
+\usepackage[expansion=false]{microtype}
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\one}{\mathbf{1}}
+\newcommand{\muvec}{\boldsymbol{\mu}}
+\newcommand{\sfq}{\mathrm{sf}}
+\DeclareMathOperator{\rank}{rank}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\adj}{adj}
+\DeclareMathOperator{\spanop}{span}
+\DeclareMathOperator{\dist}{dist}
+\title{The singular spectrum of a sparse Mertens matrix}
+\author{Jeffery Kline}
+\date{September 27, 2026\\[3pt]\small Quarantined rough draft --- not a public release}
+\begin{document}
+\maketitle
+\begin{abstract}
+We study the $n\times n$ matrix $B_n$ formed by placing ones on the diagonal and at $(i,i/P^+(i))$ for squarefree $i>1$, then replacing the first row by ones; all other entries are zero. Here $P^+(i)$ is the largest prime factor of $i$. Introduced by Kline (2019), this matrix satisfies $\det B_n=M(n)=\sum_{k\le n}\mu(k)$, where $\mu$ is the M\"obius function. We determine the multiplicity of the singular value one, compare upper singular values with square roots of parent degrees, and derive fixed-index lower limits from an explicit compact operator, including at singular matrices. The exceptional smallest singular value depends on $M(n)$ and the norm of a vector of restricted M\"obius sums. Classical estimates yield this norm's leading exponential scale, fixed-order moments, support-constrained sums, and singular-value products. Component projections give a geometric residual and a Dickman--Buchstab limit profile. The contribution considered here is an explicit limiting operator determined by the parent tree, a separation of the exceptional singular direction, and exact information about the remaining singular values. The compact-Gram method has prior arithmetic applications. Arithmetic priority remains subject to further comparison. No stronger estimate for Mertens sums or prime counting is obtained.
+\end{abstract}
+\tableofcontents
+\input{sections/introduction}
+\input{sections/definitions}
+\input{sections/arithmetic}
+\input{sections/spectral}
+\input{sections/volumes}
+\input{sections/geometry}
+\input{sections/discussion}
+\appendix
+\input{sections/halasz}
+\input{sections/references}
+\end{document}

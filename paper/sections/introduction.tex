@@ -1,0 +1,65 @@
+\section{Introduction}
+
+The determinant of a matrix can encode an arithmetic sum while leaving the geometry of most of its singular directions unexplained. The sparse Mertens matrix provides a particularly concrete example. Its nonzero entries come from a rooted tree on the squarefree integers, together with isolated nonsquarefree coordinates and a row of ones. Its determinant is the sum of the M\"obius function. This paper describes substantially more of its singular spectrum and separates the one direction carrying that sum from the remaining directions.
+
+\paragraph{A six-integer example.}
+An integer is squarefree if no prime factor occurs twice. Among $1,2,\ldots,6$, only $4=2^2$ fails this test. The primes $2,3,5$ each have parent $1$. The parent of $6=2\cdot3$ is $6/3=2$: we remove its largest prime factor, not an arbitrary prime factor. Draw arrows from parent to child:
+\begin{center}
+\setlength{\unitlength}{1pt}
+\begin{picture}(240,78)
+\put(20,36){\makebox(0,0){$1$}}
+\put(30,41){\vector(2,1){42}}
+\put(30,36){\vector(1,0){42}}
+\put(30,31){\vector(2,-1){42}}
+\put(82,62){\makebox(0,0){$2$}}
+\put(82,36){\makebox(0,0){$3$}}
+\put(82,10){\makebox(0,0){$5$}}
+\put(92,62){\vector(1,0){42}}
+\put(144,62){\makebox(0,0){$6$}}
+\put(205,36){\makebox(0,0){$4$}}
+\put(205,18){\makebox(0,0){\small isolated}}
+\end{picture}
+\end{center}
+Rows and columns are ordered by their integer labels. Start with a one on every diagonal entry. For each arrow $j\to i$, put another one in row $i$, column $j$; leave all other entries zero. This gives $A_n$. Replace its first row by ones to obtain $B_n$. For example, the arrow $2\to6$ gives the entry in row six, column two. The isolated vertex $4$ keeps its diagonal one and is also included in the new first row. Thus the arrows describe the original parent links, not every nonzero entry of $B_n$.
+
+\paragraph{Comparison with Redheffer's matrix.}
+In the conventional orientation, Redheffer's matrix has entry one at $(i,j)$ when $j=1$ or $i\mid j$, and zero otherwise. Its transpose therefore has entry one when $i=1$ or $j\mid i$. Figure~\ref{fig:redheffer} uses this transpose so that both matrices have their row of ones at the top. Transposition preserves the determinant and singular values. Below that row, Redheffer's transpose includes every divisor of the row index; $B_n$ retains the diagonal and, for each squarefree index greater than one, just its parent. Both determinants equal $M(n)$. At $n=120$, the two matrices have respectively $721$ and $313$ nonzero entries.
+
+\begin{figure}[t]
+\centering
+\input{figures/redheffer-comparison}
+\caption{Nonzero entries at $n=120$, with identical row and column scales. Blank entries are zero. Orange marks the first row, gray the remaining diagonal, green the parent links retained in $B_n$, and blue the other divisor entries present only in $R_n^T$. For example, row $30$ of $R_n^T$ has ones in columns $1,2,3,5,6,10,15,30$, whereas row $30$ of $B_n$ has ones only in columns $6=30/5$ and $30$.}
+\label{fig:redheffer}
+\end{figure}
+
+All constructions are defined formally in Section~\ref{sec:definitions}. The parent-incidence matrix is denoted by $S_n$, the triangular matrix $I_n+S_n$ by $A_n$, and the matrix obtained by replacing its first row by ones by $B_n$. Singular values are always listed in decreasing order. The integer $k_n$ counts vertices that have at least one child.
+
+The principal spectral conclusions are these. For $n\ge4$, exactly $n-2k_n-1$ singular values of $B_n$ equal one. Exactly $k_n+1$ are larger than one and $k_n$ are smaller than one, with a possible zero included in the latter count. Moreover $k_n=O_H(n/(\log n)^H)$ for every fixed positive $H$. Apart from the largest singular value, which is asymptotic to $\sqrt n$, the fixed upper singular values are asymptotic to
+\[
+ \sqrt{\frac{n}{a_r\log n}},\qquad r=1,2,\ldots,
+\]
+where $a_r$ is the $r$th squarefree positive integer. The underlying comparison has a uniform additive error less than three and therefore also applies to growing indices whenever the corresponding degree tends to infinity.
+
+At the lower end, the inverse Gram matrices of $A_n$, divided by $n$, converge in Hilbert--Schmidt norm to an explicit positive compact operator. Removing a specified rank-one part yields an operator $L$ whose positive eigenvalues determine every fixed nonexceptional lower singular value of $B_n$. The limit remains valid at integers for which the Mertens sum vanishes. The proof at those integers uses an exact Moore--Penrose inverse rather than an invalid division by the determinant.
+
+The exceptional direction requires a different ingredient. We define the restricted signed count
+\[
+ R(x,y)=\sum_{\substack{d\le x\\P^-(d)>y}}\mu(d),
+\]
+including the term $d=1$. Here $P^-(d)$ is the smallest prime factor and $\mu$ is the M\"obius function. The relevant inverse vector has these signed counts as its squarefree coordinates. We calculate the leading exponential scale of its squared Euclidean norm by first summing $R(n/p,p)^2$ over primes, then controlling the composite indices. We also give all fixed moments of order greater than one and a sharp leading exponent under a prescribed support bound for least-prime weights. These analytic results use existing cancellation estimates, not a new source of ordinary M\"obius cancellation.
+
+\subsection{Relation to earlier work and the scope of novelty}
+
+The sparse matrix $B_n$ was introduced in Kline~\cite{kline2019}; its eigenvalue program was developed in~\cite{kline2020}. It is the matrix denoted by $\mathcal R_n$ in the earlier work. We use the letter $B$ here to distinguish it from both Redheffer's matrix and the restricted sum $R(x,y)$; this is a change of notation, not a new matrix construction. The local predecessor manuscript~\cite{klineDraft} develops the triangular inverse, the restricted-sum coordinates, and the smallest-singular-value reduction. We rederive those identities here so that no earlier manuscript is needed to interpret this one. An earlier unpublished ancestor-kernel calculation also gives a two-sided bound of order $\sqrt n$ for $\norm{A_n^{-1}}$; the compact limit below goes beyond that bound to a limiting constant and fixed-index spectral laws. A related working paper~\cite{klineExtremal} studies row-modified weighted divisor matrices with entries $(j/i)^s$ when $j$ divides $i$. Its dominant inverse term and extreme singular-value analysis are relevant predecessors. Those divisor matrices differ from the parent forest here; the nonexceptional fixed lower spectrum and its explicit deflated operator are the focus of the present comparison.
+
+Hilberdink~\cite{hilberdink}, in particular Theorems~2.2 and~3.2 and Section~4(b), develops compact Gram limits for multiplicative Toeplitz matrices and derives arithmetic singular-value asymptotics. Thus neither the general method nor the idea of a fixed lower-spectrum limit is claimed as new. A multiplicative Toeplitz entry has the form $f(i/j)$, with a prescribed support on quotients. The forest inverse here does not have that form: its entries at $(2,1)$ and $(6,3)$ are respectively $-1$ and $0$, although both quotients equal two. Our candidate contribution is the explicit ancestor-density kernel, its uniform summable tail, the deflation for the bordered matrix, and the exact unit-spectrum and degree comparisons.
+
+Alladi~\cite{alladi1982} already studies restricted M\"obius sums and the unrestricted bounded least-prime weighted extremum. McNew~\cite{mcnew} studies the analogous smooth-number maximum and supplies an accessible account of the smooth-count expansions used here. The saddle scale itself is classical. The arithmetic moment and support-constrained formulations below are derived refinements; we do not claim that a bounded search has established their publication priority. The full theorem pages of Alladi's 1982 paper were not accessible in the present survey, so a decisive theorem-by-theorem comparison remains a release obligation. The zero value of the unweighted thin-prime reciprocal series is already included in the density theorem of Kural, McDonald, and Sah~\cite{kms}; the quantitative weighted tail is the additional formulation considered here.
+
+This rough draft passes a limited gate for developing the spectral contribution. It is not a global novelty certification. The geometric component functional is included as an explicit interpretation and consequence of classical smooth and rough counting, rather than as a separate priority headline. No result improves a known estimate for the Mertens function, proves the prime number theorem by a new geometric argument, or advances the Riemann hypothesis.
+
+\subsection{Logical dependencies}
+
+The finite forest identities, exact unit spectrum, degree comparison, and compact inverse-Gram limit use elementary counting and linear algebra. The explicit upper constants use the prime number theorem. The restricted-sum moment scale uses a classical Mertens bound and a two-term smooth-count expansion, both stated with their needed ranges. Those estimates separate the exceptional singular direction. The component profile uses fixed-parameter smooth and rough asymptotics. An optional appendix applies a general Hal\'asz theorem to the component residual; it is not needed for the spectral theorems.
+
+The proofs are self-contained relative to these explicitly stated classical inputs. No numerical experiment is required to prove any assertion in the manuscript. Numerical approximations to the limiting eigenvalues are omitted here because finite sections alone do not certify their limiting decimal values.

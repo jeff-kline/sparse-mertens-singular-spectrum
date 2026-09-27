@@ -1,0 +1,412 @@
+\section{The singular spectrum}\label{sec:spectral}
+
+We use the definitions of Section~\ref{sec:definitions}. All vector norms are Euclidean and all matrix norms without a subscript are induced operator norms. For a matrix or a compact operator $T$, write $s_r(T)$ for its $r$th largest singular value, counting multiplicity and adjoining zeros when appropriate. Thus $s_r(B_n)=\sigma_r(B_n)$. For a real symmetric matrix, its inertia is the triple consisting of its numbers of positive, negative, and zero eigenvalues. Transposition is denoted by a superscript $T$; for vectors $x,y$ in the real Hilbert space $\ell^2(\mathbb N)$, the notation $xy^T$ means the operator $h\mapsto x\langle y,h\rangle$.
+
+\subsection{Exact unit singular values and a finite reducing core}
+
+Let $\mathcal P_n$ be the set of vertices having a child and put $k_n=|\mathcal P_n|$. A subspace reduces a matrix if it and its orthogonal complement are invariant under both the matrix and its transpose. The next statement locates the entire part of the matrix that can have nonunit singular values.
+
+\begin{theorem}\label{spec:core}
+The matrix $A_n$ has exactly $k_n$ singular values greater than one, $k_n$ less than one, and $n-2k_n$ equal to one. For $n\ge4$, the corresponding counts for $B_n$ are
+\[
+ k_n+1,\qquad k_n,\qquad n-2k_n-1.
+\]
+A zero singular value is included in the count below one. There are reducing subspaces of dimensions $2k_n$ and $2k_n+1$, respectively, outside which the matrices act as the identity; their dimensions equal the numbers of nonunit singular values. For every fixed $H>0$,
+\begin{equation}\label{spec:parentbound}
+ k_n=O_H\!\left(\frac{n}{(\log n)^H}\right).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+Suppress the index $n$. Distinct nonzero columns of $S$ have disjoint supports, because each vertex has at most one parent. Every active parent $a$ has a leaf child. Indeed, take the largest prime $p\le n/a$. Since $a$ has a child, $p>P^+(a)$; and the next prime after $p$ exceeds $n/a$, so $ap$ cannot itself have a child within the truncation. Such leaf children are distinct for distinct parents.
+
+Set $E=\spanop\{e_a:a\in\mathcal P_n\}$. In the decomposition $E\oplus E^\perp$ the matrix has the form
+\[
+ S=\begin{pmatrix}D&0\\ F&0\end{pmatrix}.
+\]
+The columns of $F$ have disjoint nonempty supports, by the leaf observation, so $F$ has full column rank $k_n$. Let $\mathcal F=\operatorname{range}F$. Use the normalized columns of $F$ as an orthonormal basis of $\mathcal F$. In $V=E\oplus\mathcal F=E+\operatorname{range}S$ we then have
+\[
+ S|_V=\begin{pmatrix}D&0\\ R&0\end{pmatrix},\qquad
+ A|_V=\begin{pmatrix}I+D&0\\ R&I\end{pmatrix},
+\]
+where $R$ is diagonal with strictly positive entries: its entry for $a$ is the square root of the number of leaf children of $a$. Both $S$ and $S^T$ vanish on $U=V^\perp$. Thus $V$ reduces $A$, and $A$ is the identity on $U$.
+
+On $V$, its Gram displacement is
+\[
+ A^TA-I=\begin{pmatrix}T_0&R\\ R&0\end{pmatrix},\qquad
+ T_0=D+D^T+D^TD+R^2.
+\]
+The invertible substitution $y'=y+\tfrac12R^{-1}T_0x$ changes the quadratic form $x^TT_0x+2x^TRy$ to $2x^TRy'$. The latter has inertia $(k_n,k_n,0)$, as is seen by subsequently setting $z=Ry'$ and diagonalizing $2x^Tz$ with $x+z$ and $x-z$. The displacement is zero on $U$. Its eigenvalues are the squared singular values of $A$ minus one, proving the assertions for $A$.
+
+The first rows of $A$ and $B$ are $e_1^T$ and $\one^T$, respectively, so
+\begin{equation}\label{spec:gramdisplacement}
+ B^TB-I=(A^TA-I)+\one\one^T-e_1e_1^T.
+\end{equation}
+For $n\ge4$, the root belongs to $E$ and $z=\operatorname{proj}_U\one$ is nonzero. Indeed, the nonsquarefree coordinate $4$ is isolated, so $e_4\in U$ and $\langle\one,e_4\rangle=1$. Put $b=\operatorname{proj}_V\one$ and $\rho=\norm{z}>0$. Relative to $V\oplus\spanop\{z/\rho\}$, the displacement in \eqref{spec:gramdisplacement} is
+\[
+ \begin{pmatrix}
+ (A^TA-I)|_V-e_1e_1^T+bb^T&\rho b\\
+ \rho b^T&\rho^2
+ \end{pmatrix}.
+\]
+Eliminating its off-diagonal block by congruence leaves the positive scalar $\rho^2$ and the Schur complement $(A^TA-I)|_V-e_1e_1^T$. The subtraction changes only the $E\times E$ block. Its other blocks remain $R,R,0$, so the preceding quadratic-form argument gives inertia $(k_n,k_n,0)$ for this complement. The full displayed matrix therefore has inertia $(k_n+1,k_n,0)$.
+
+The subspace $V_B=V\oplus\spanop\{z\}$ reduces $B$. To check this directly, $B-I=S+e_1(\one-e_1)^T$ and its transpose both vanish on $U\cap\one^\perp=V_B^\perp$. Thus this complement supplies exactly $n-2k_n-1$ unit singular directions. If $B$ is singular, its zero Gram eigenvalue contributes $-1$ to the displacement and causes no exception to the count.
+
+It remains to bound the number of parents. For $y\ge2$, any parent with $P^+(a)>y$ satisfies $a<n/y$, since it has a child $ap$ with $p>P^+(a)$. Consequently
+\[
+ k_n\le n/y+\#\{a\le n:a\text{ squarefree},\ P^+(a)\le y\}.
+\]
+Take $y=(\log n)^H$ and choose a fixed $\alpha\in(0,1)$ such that $H(1-\alpha)<1$. The second term is at most
+\[
+ n^\alpha\prod_{p\le y}(1+p^{-\alpha})
+ \le n^\alpha\exp\!\left(\sum_{m\le y}m^{-\alpha}\right)
+ \le n^\alpha\exp\bigl(O_\alpha(y^{1-\alpha})\bigr)
+ =n^{\alpha+o(1)}.
+\]
+This is $o(n/(\log n)^H)$ and proves \eqref{spec:parentbound}.
+\end{proof}
+
+\subsection{Uniform comparison with the parent degrees}
+
+Sort the parent degrees as $d_{(1)}(n)\ge\cdots\ge d_{(n)}(n)$, including zero degrees. Write $Q(n)=\sum_{j\le n}\mu(j)^2$. The estimates below have absolute errors independent of the index and require no cancellation in M\"obius sums.
+
+\begin{theorem}\label{spec:upper}
+For $n\ge2$,
+\begin{align}
+ \left|\sigma_r(A_n)-\sqrt{d_{(r)}(n)}\right|&\le1
+ &&(1\le r\le n),\label{spec:Adegree}\\
+ \left|\sigma_{r+1}(B_n)-\sqrt{d_{(r)}(n)}\right|
+ &\le1+2\sqrt{\frac{Q(n)-1}{n}}<3
+ &&(1\le r\le n-1).\label{spec:Bdegree}
+\end{align}
+Furthermore $\sigma_1(B_n)=\sqrt n+O(1)$. In particular, for any sequence $r=r(n)\le n-1$ such that $d_{(r(n))}(n)\to\infty$,
+\[
+ \frac{\sigma_{r(n)+1}(B_n)}{\sqrt{d_{(r(n))}(n)}}\longrightarrow1.
+\]
+If $a_1=1,a_2=2,a_3=3,a_4=5,\ldots$ are the squarefree positive integers in increasing order, then for every fixed $r\ge1$,
+\begin{equation}\label{spec:upperfixed}
+ \sigma_r(A_n)\sim\sqrt{\frac{n}{a_r\log n}},\qquad
+ \sigma_{r+1}(B_n)\sim\sqrt{\frac{n}{a_r\log n}}.
+\end{equation}
+The final assertion uses the classical prime number theorem.
+\end{theorem}
+
+\begin{proof}
+Orthogonality of the columns gives $S_n^TS_n=\diag(d_j(n))$. Thus $s_r(S_n)=\sqrt{d_{(r)}(n)}$ and \eqref{spec:Adegree} follows from the singular-value perturbation inequality $|s_r(X)-s_r(Y)|\le\norm{X-Y}$.
+
+For the bordered matrix put $h=\one/\sqrt n$, $P=I-hh^T$, and
+\[
+ \eta=\norm{S_nh}=\sqrt{(Q(n)-1)/n},\qquad
+ T=\sqrt n\,e_1h^T+S_nP.
+\]
+The first summand acts from $\spanop\{h\}$ to $\spanop\{e_1\}$; the second acts from $h^\perp$ to $e_1^\perp$. Thus these are orthogonal domain and range decompositions. The singular values of $T$ consist of $\sqrt n$ and the $n-1$ singular values of the restriction of $S_nP$ between those complements. The root has degree $\pi(n)$ and every other degree is at most $\pi(n)$, so
+\[
+ \norm{S_nP}\le\norm{S_n}=\sqrt{\pi(n)}<\sqrt n.
+\]
+Consequently $s_1(T)=\sqrt n$ and $s_{r+1}(T)=s_r(S_nP)$ for $1\le r\le n-1$, where the full matrix $S_nP$ has one additional zero singular value. Since
+\[
+ B_n=\sqrt n\,e_1h^T+(I-e_1e_1^T)+S_n,
+ \qquad \norm{B_n-T}\le1+\eta,
+\]
+we obtain $|\sigma_1(B_n)-\sqrt n|\le1+\eta<2$. Applying the same inequality at index $r+1$, followed by $\norm{S_nP-S_n}=\eta$, proves \eqref{spec:Bdegree}. Dividing that bound by a degree tending to infinity proves its growing-index consequence.
+
+For completeness, fixed-coordinate degree asymptotics must be justified after sorting. For squarefree $a$,
+\[
+ d_a(n)=\max\{0,\pi(n/a)-\pi(P^+(a))\},
+\]
+with $P^+(1)=1$, while nonsquarefree coordinates have degree zero. The prime number theorem gives
+\[
+ \frac{\log n}{n}d_a(n)\longrightarrow\frac{\mu(a)^2}{a}
+ \quad\text{for every fixed }a.
+\]
+View the corresponding diagonal matrices as operators on $\ell^2(\mathbb N)$ by extending them by zero. These converge in operator norm to the diagonal operator with entries $\mu(a)^2/a$. Indeed, for $J<a\le\sqrt n$, the classical Chebyshev bound $\pi(x)\le Cx/\log x$ gives
+\[
+ \frac{\log n}{n}d_a(n)\le\frac{2C}{a}\le\frac{2C}{J},
+\]
+and for $a>\sqrt n$ the bound $d_a(n)\le n/a$ gives an upper bound $\log n/\sqrt n$. The limiting diagonal tail is at most $1/J$. Combine these bounds with convergence on the first $J$ coordinates, then let $J$ increase. The limiting diagonal operator is compact and has positive eigenvalues $1/a_r$ in decreasing order. The min--max principle, or its direct application to diagonal matrices, therefore gives
+\[
+ \frac{\log n}{n}d_{(r)}(n)\longrightarrow\frac1{a_r}.
+\]
+The bounded errors in \eqref{spec:Adegree}--\eqref{spec:Bdegree} are negligible on these diverging scales, proving \eqref{spec:upperfixed}.
+\end{proof}
+
+\subsection{An explicit compact inverse-Gram limit}
+
+Hilberdink~\cite{hilberdink} previously applied compact Gram limits to arithmetic matrices. Here the ancestor relation determines a different explicit kernel. Recall $c_0=1/\zeta(2)$ and, for squarefree $k$, define
+\begin{equation}\label{spec:density}
+ \delta_k=\frac{c_0}{k}\prod_{p\le P^+(k)}\frac{p}{p+1}.
+\end{equation}
+The product is empty for $k=1$, so $\delta_1=c_0$. Define the symmetric infinite matrix $K$ by zero on every nonsquarefree row or column, and on squarefree indices by
+\begin{equation}\label{spec:kernel}
+ K_{jk}=\begin{cases}
+ \mu(k/j)\delta_k,&j\preceq k,\\
+ \mu(j/k)\delta_j,&k\preceq j,\\
+ 0,&\text{otherwise}.
+ \end{cases}
+\end{equation}
+The first two formulas agree when $j=k$.
+
+An operator $T$ on $\ell^2(\mathbb N)$ is Hilbert--Schmidt if
+$\norm{T}_{\mathrm{HS}}^2=\sum_{j,k}|\langle e_j,Te_k\rangle|^2<\infty$.
+Such an operator is bounded, its operator norm is at most its Hilbert--Schmidt norm, and truncation to finitely many coordinates converges in operator norm; in particular it is compact. A self-adjoint operator is positive if $\langle x,Tx\rangle\ge0$ for every $x$. Positive compact operators have decreasing nonnegative eigenvalues, with their positive eigenvalues repeated according to multiplicity.
+
+\begin{theorem}\label{spec:compact}
+The kernel \eqref{spec:kernel} defines a positive Hilbert--Schmidt operator of infinite rank. With matrices extended by zero outside their first $n$ coordinates,
+\begin{equation}\label{spec:Gramlimit}
+ G_n:=\frac{C_n^TC_n}{n}\longrightarrow K
+ \quad\text{in Hilbert--Schmidt norm}.
+\end{equation}
+For every fixed $r\ge1$,
+\[
+ \frac{s_r(C_n)}{\sqrt n}\longrightarrow\sqrt{\lambda_r(K)},
+ \qquad
+ \frac{\norm{C_n}}{\sqrt n}\longrightarrow\sqrt{\norm{K}},
+\]
+where $\lambda_r(K)$ lists the positive eigenvalues. In particular, the second limit specifies an exact positive constant without a numerical approximation.
+\end{theorem}
+
+\begin{proof}
+The inverse formula in Proposition~\ref{def:inverse} says that on squarefree indices $(C_n)_{ij}=\mu(i/j)$ when $j\preceq i$, and is zero otherwise. A nonsquarefree coordinate contributes only its diagonal entry one. Two squarefree vertices have common descendants precisely when they are comparable, because the ancestors of a vertex form a single chain. If $j\preceq k$, these common descendants are exactly the descendants of $k$. For every such descendant $i$,
+$\mu(i/j)\mu(i/k)=\mu(k/j)$. It follows that
+\begin{equation}\label{spec:exactGram}
+ (C_n^TC_n)_{jk}=\mu(k/j)D_k(n)\qquad(j\preceq k).
+\end{equation}
+The other entries follow by symmetry, except for the isolated nonsquarefree diagonal, which is one.
+
+For fixed squarefree $k$, its descendants are $kd$ where $d\le n/k$ is squarefree and has no prime factor at most $P^+(k)$. We give the density argument explicitly. Let $y=P^+(k)$ and $P_y=\prod_{p\le y}p$. The identity $\mu^2(d)=\sum_{b^2\mid d}\mu(b)$ implies
+\[
+ \sum_{d\le x}\mu^2(d)\mathbf1_{(d,P_y)=1}
+ =\sum_{\substack{b\le\sqrt x\\(b,P_y)=1}}\mu(b)
+   \sum_{\substack{m\le x/b^2\\(m,P_y)=1}}1.
+\]
+For fixed $b$, the inner count divided by $x$ tends to
+$b^{-2}\prod_{p\le y}(1-1/p)$. To interchange the limit and the sum, the absolute contribution of $b>B$, divided by $x$, is at most $\sum_{b>B}b^{-2}$, uniformly in $x$. Letting $B$ increase proves that the density is
+\[
+ \prod_{p\le y}(1-1/p)
+ \sum_{(b,P_y)=1}\frac{\mu(b)}{b^2}
+ =\prod_{p\le y}(1-1/p)\prod_{p>y}(1-p^{-2}).
+\]
+Replacing $x$ by $n/k$ gives $D_k(n)/n\to\delta_k$, hence entrywise convergence in \eqref{spec:Gramlimit}.
+
+We now prove a uniform summable tail, which is essential for the operator conclusion. Always $D_k(n)\le n/k$. The ancestors of squarefree $k$ number $1+\#\{p:p\mid k,\ p\text{ prime}\}\le1+\log_2k$. Thus all squarefree entries with maximum index $k$ contribute at most
+\[
+ \frac{2(1+\log_2k)}{k^2}
+\]
+to the squared Hilbert--Schmidt norm of $G_n$. The same bound holds for $K$, since $\delta_k\le1/k$. Therefore the squared norm of the squarefree part outside the first $J\times J$ block is at most
+\begin{equation}\label{spec:HStail}
+ 2\sum_{k>J}\frac{1+\log_2k}{k^2},
+\end{equation}
+uniformly in $n$. The nonsquarefree diagonal of $G_n$ contributes at most $n/n^2=1/n$. Finite-block entrywise convergence, \eqref{spec:HStail}, and the triangle inequality prove Hilbert--Schmidt convergence. The same estimate constructs $K$ as a Hilbert--Schmidt operator. Each $G_n$ is positive; operator-norm convergence shows that $K$ is positive as well.
+
+On any finite set of distinct prime coordinates, the compression of $K$ is the positive diagonal matrix with entries $\delta_p$, because distinct primes are incomparable. Such compressions have arbitrarily large rank, so $K$ has infinite rank. Finally the min--max principle for positive compact operators gives
+$|\lambda_r(G_n)-\lambda_r(K)|\le\norm{G_n-K}$ for each fixed $r$. Since $\lambda_r(G_n)=s_r(C_n)^2/n$, this proves the stated limits.
+\end{proof}
+
+\subsection{The escaping direction and two projections}
+
+Define the positive compact operator
+\begin{equation}\label{spec:Ldefinition}
+ L=K-\frac{(Ke_1)(Ke_1)^T}{c_0}.
+\end{equation}
+We next prove both its positivity and the projection limit needed for the border. For any nonzero real vector $z$, write
+\[
+ \mathsf P_z=I-\frac{zz^T}{\norm{z}^2};
+\]
+this is the orthogonal projection onto the vectors perpendicular to $z$. For a unit vector the denominator is one. Put
+\[
+ D_n=\frac{C_n}{\sqrt n},\qquad
+ a_n=\frac{\muvec_n}{\sqrt{Q(n)}},\qquad
+ v_n=\frac{w_n}{W_n}.
+\]
+These are well defined for $n\ge2$. The symbols $a_n,v_n$ in this subsection denote unit vectors, distinct from the scalar enumeration $a_r$ in Theorem~\ref{spec:upper}.
+
+\begin{lemma}\label{spec:escape}
+After zero extension to $\ell^2(\mathbb N)$, $v_n$ converges weakly to zero: $\langle v_n,x\rangle\to0$ for every fixed $x\in\ell^2$. Moreover
+\begin{equation}\label{spec:projectedlimit}
+ (\mathsf P_{a_n}D_n\mathsf P_{v_n})^T
+ (\mathsf P_{a_n}D_n\mathsf P_{v_n})\longrightarrow L
+ \quad\text{in operator norm}.
+\end{equation}
+The operator $L$ is positive, compact, and of infinite rank.
+\end{lemma}
+
+\begin{proof}
+We first justify weak escape using the arithmetic estimates rather than normalization alone. For fixed $y$, the rough M\"obius sum satisfies
+\begin{equation}\label{spec:smoothconvolution}
+ R(x,y)=\sum_{\substack{b\le x\\P^+(b)\le y}}M(x/b).
+\end{equation}
+Indeed, convolving $\mu$ with the indicator of the $y$-smooth integers cancels its Euler factor at every prime at most $y$, leaving exactly $\mu(d)\mathbf1_{P^-(d)>y}$. This coefficient identity also proves \eqref{spec:smoothconvolution} by finite summation, without convergence assumptions about Dirichlet series.
+
+Apply the classical estimate \eqref{arith:mertens} to the terms $b\le\sqrt x$. Their absolute sum is at most
+\[
+ C_yx\exp(-c'(\log x)^{7/12}),
+\]
+because $\sum_{P^+(b)\le y}b^{-1}=\prod_{p\le y}(1-p^{-1})^{-1}<\infty$. For $b>\sqrt x$, use $|M(x/b)|\le x/b$ and
+\[
+ \sum_{\substack{b>\sqrt x\\P^+(b)\le y}}b^{-1}
+ \le x^{-1/4}\sum_{P^+(b)\le y}b^{-1/2}=O_y(x^{-1/4}).
+\]
+Thus
+\begin{equation}\label{spec:fixedrough}
+ R(x,y)=O_y\bigl(xe^{-c'(\log x)^{7/12}}+x^{3/4}\bigr).
+\end{equation}
+By the exact coordinates of $w_n$ in Section~\ref{sec:definitions}, its first coordinate is $M(n)-1$, a fixed squarefree coordinate $j\ge2$ is $R(n/j,P^+(j))$, and a nonsquarefree coordinate is one. Theorem~\ref{arith:energy} gives
+$W_n=n\exp(-(1+o(1))s(n))$, where $s(n)=\sqrt{\log n\log\log n}$.
+Since $(\log n)^{7/12}/s(n)\to\infty$, \eqref{arith:mertens} and \eqref{spec:fixedrough} show that every fixed coordinate of $w_n$ is $o(W_n)$. Therefore each coordinate of $v_n$ tends to zero. Its norm equals one; approximating any $x\in\ell^2$ by a vector supported on finitely many coordinates proves the asserted weak convergence.
+
+Since $\muvec_n=C_ne_1$ and $(G_n)_{11}=Q(n)/n\to c_0$, a direct multiplication gives
+\begin{equation}\label{spec:Jdefinition}
+ J_n:=D_n^T\mathsf P_{a_n}D_n
+ =G_n-\frac{(G_ne_1)(G_ne_1)^T}{(G_n)_{11}}
+ \longrightarrow L
+\end{equation}
+in operator norm. Here and below a finite matrix such as $J_n$ is extended by zero. This also proves positivity of $L$, since $J_n$ is positive. Compactness follows either from \eqref{spec:Ldefinition} or from compactness of $K$ and the finite rank of the subtracted term.
+
+Compactness sends bounded weakly null sequences to norm-null sequences. In this case the fact can be checked directly: approximate $L$ in norm by finite-coordinate operators, for which coordinatewise convergence gives the assertion. Thus $\norm{Lv_n}\to0$, and \eqref{spec:Jdefinition} yields $\norm{J_nv_n}\to0$. Expanding the two factors of the projection shows
+\[
+ \norm{\mathsf P_{v_n}J_n\mathsf P_{v_n}-J_n}
+ \le3\norm{J_nv_n}\longrightarrow0.
+\]
+When this identity is interpreted on $\ell^2$, the projection is $I-v_nv_n^T$ on that space; its multiplication with the zero-extended $J_n$ agrees exactly with the zero extension of the finite product. This proves \eqref{spec:projectedlimit}.
+
+Finally, on $m$ distinct prime coordinates, $K$ compresses to a positive diagonal matrix. The subtraction in \eqref{spec:Ldefinition} has rank at most one. On the subspace perpendicular to its defining vector the diagonal quadratic form remains strictly positive, furnishing at least $m-1$ positive directions. Because $L$ is positive, this proves that it has at least $m-1$ positive eigenvalues. Let $m$ increase. In particular its positive eigenvalues $\lambda_r(L)$ are defined and strictly positive for every fixed $r$, and \eqref{spec:projectedlimit} implies
+\begin{equation}\label{spec:projectedsingular}
+ s_r(\mathsf P_{a_n}D_n\mathsf P_{v_n})
+ \longrightarrow\sqrt{\lambda_r(L)}.
+\end{equation}
+\end{proof}
+
+\subsection{Deflation and every fixed nonexceptional lower singular value}
+
+We record the elementary singular-value lemma with its dimension-independent bounds. It explains why the projections must occur on both sides.
+
+\begin{lemma}\label{spec:deflation}
+Suppose $\norm{D_n}\le C$, $a_n,v_n$ are unit vectors, and $|t_n|\to\infty$. For each fixed $r$, in dimensions tending to infinity,
+\[
+ s_{r+1}(D_n-t_na_nv_n^T)
+ -s_r(\mathsf P_{a_n}D_n\mathsf P_{v_n})\longrightarrow0.
+\]
+\end{lemma}
+
+\begin{proof}
+Choose orthonormal bases beginning with $a_n$ in the range and $v_n$ in the domain. The perturbed matrix becomes
+\[
+ X_n=\begin{pmatrix}\alpha_n-t_n&b_n\\c_n&E_n\end{pmatrix},
+\]
+where $|\alpha_n|$, $\norm{b_n}$, $\norm{c_n}$, and $\norm{E_n}$ are at most $C$. Set $z_n=\alpha_n-t_n$, which is nonzero for all sufficiently large $n$. Direct multiplication gives
+\[
+ \begin{pmatrix}1&0\\-c_n/z_n&I\end{pmatrix}
+ X_n
+ \begin{pmatrix}1&-b_n/z_n\\0&I\end{pmatrix}
+ =\begin{pmatrix}z_n&0\\0&E_n-c_nb_n/z_n\end{pmatrix}.
+\]
+Each multiplier and its inverse has norm at most $1+C/|z_n|$. Singular values of a product with invertible left and right factors are bounded above by the product of their norms times the original singular value, and bounded below by the reciprocal product of the inverse norms times that singular value. Thus corresponding singular values before and after this multiplication differ by a factor between $(1+C/|z_n|)^{-2}$ and $(1+C/|z_n|)^2$.
+
+The first diagonal entry has modulus tending to infinity; the lower block is bounded uniformly. All singular values after the first are therefore bounded, so these multiplicative errors tend to zero also in absolute value at each such index. Further,
+$\norm{c_nb_n/z_n}\le C^2/|z_n|\to0$. The singular-value perturbation inequality now gives
+$s_{r+1}(X_n)-s_r(E_n)\to0$. The matrix $\mathsf P_{a_n}D_n\mathsf P_{v_n}$ has block form $\diag(0,E_n)$ in the same bases. Its first $n-1$ singular values are those of $E_n$, with a further zero appended, which proves the claim.
+\end{proof}
+
+\begin{theorem}\label{spec:bottom}
+For every fixed integer $r\ge1$,
+\begin{equation}\label{spec:bottomlimit}
+ \sqrt n\,\sigma_{n-r}(B_n)\longrightarrow\lambda_r(L)^{-1/2}
+ \qquad(n\to\infty).
+\end{equation}
+The limit is along all integers, including those with $M(n)=0$. In particular,
+\[
+ \sigma_{n-1}(B_n)\sim\frac1{\sqrt{n\norm{L}}}.
+\]
+\end{theorem}
+
+\begin{proof}
+First suppose $M(n)\ne0$. The exact inverse from Proposition~\ref{def:inverse} gives
+\[
+ \frac{B_n^{-1}}{\sqrt n}
+ =D_n-t_na_nv_n^T,\qquad
+ t_n=\frac{\sqrt{Q(n)}W_n}{M(n)\sqrt n}.
+\]
+By Theorem~\ref{spec:compact}, $\norm{D_n}$ is bounded. Moreover $Q(n)/n\to c_0$, while Theorem~\ref{arith:energy} and \eqref{arith:mertens} imply $W_n/|M(n)|\to\infty$ along the nonzero indices. Hence $|t_n|\to\infty$. Lemma~\ref{spec:deflation}, followed by \eqref{spec:projectedsingular}, yields
+\[
+ \frac{s_{r+1}(B_n^{-1})}{\sqrt n}
+ \longrightarrow\sqrt{\lambda_r(L)}.
+\]
+For an invertible matrix with descending singular values,
+$s_{r+1}(B_n^{-1})=1/\sigma_{n-r}(B_n)$; this proves \eqref{spec:bottomlimit} on these indices.
+
+Now suppose $M(n)=0$. The rank-one perturbation of the invertible $A_n$ has rank at least $n-1$, and its nonzero kernel vector $\muvec_n$ shows that its rank is exactly $n-1$. Direct use of $B_n=A_n+e_1u^T$, $u=\one-e_1$, gives
+\[
+ B_n\muvec_n=0,\qquad w_n^TB_n=0,\qquad
+ B_nC_n=I+e_1w_n^T.
+\]
+For the left-kernel identity, $w_n^TA_n=u^T$ and $w_n^Te_1=M(n)-1=-1$. Thus $a_n$ and $v_n$ span the right and left kernels, respectively. It follows that
+\[
+ B_n(\mathsf P_{a_n}C_n\mathsf P_{v_n})=\mathsf P_{v_n}.
+\]
+The operator in parentheses maps into $a_n^\perp$, vanishes on $v_n$, and inverts $B_n$ from $v_n^\perp$ onto $a_n^\perp$. This is exactly the Moore--Penrose inverse: by definition, it is the inverse on those orthogonal complements and is zero on the left kernel. Consequently
+\[
+ \frac{B_n^\dagger}{\sqrt n}=\mathsf P_{a_n}D_n\mathsf P_{v_n}.
+\]
+Since $\sigma_n(B_n)=0$ and all other singular values are positive, its $r$th largest singular value is $1/\sigma_{n-r}(B_n)$. Equation~\eqref{spec:projectedsingular} proves the same limit along zero-Mertens indices. The two cases together prove the all-integer assertion.
+\end{proof}
+
+\subsection{The exceptional minimum and conditioning}
+
+The preceding theorem omits exactly the singular direction carrying $M(n)$. For clarity we include its normalization and show how the same estimates separate it from the rest of the lower spectrum.
+
+\begin{theorem}\label{spec:minimum}
+Along the integers for which $M(n)\ne0$,
+\begin{equation}\label{spec:minimumformula}
+ \sigma_n(B_n)=\frac{|M(n)|}{\sqrt{Q(n)}W_n}(1+o(1)).
+\end{equation}
+At every zero of $M(n)$, $\sigma_n(B_n)=0$ exactly. In particular,
+\[
+ \sqrt n\,\sigma_n(B_n)\longrightarrow0
+\]
+along all integers. If $\kappa_2(B_n)=\sigma_1(B_n)/\sigma_n(B_n)$ denotes the Euclidean condition number at invertible indices, then
+\[
+ \kappa_2(B_n)\sim\sqrt{c_0}\,\frac{nW_n}{|M(n)|}.
+\]
+The stable rank, defined by $\operatorname{sr}(B_n)=\norm{B_n}_{\mathrm F}^2/\norm{B_n}^2$, satisfies
+\[
+ \operatorname{sr}(B_n)\longrightarrow2+c_0,
+\]
+where $\norm{T}_{\mathrm F}^2$ is the sum of the squared matrix entries.
+\end{theorem}
+
+\begin{proof}
+At nonzero-Mertens indices, the rank-one term in the exact inverse has operator norm
+\[
+ \frac{\sqrt{Q(n)}W_n}{|M(n)|}.
+\]
+The triangle inequality and its reverse show
+\[
+ \left|\norm{B_n^{-1}}-\frac{\sqrt{Q(n)}W_n}{|M(n)|}\right|
+ \le\norm{C_n}=O(\sqrt n).
+\]
+The relative error is $O(|M(n)|/W_n)=o(1)$ by the same arithmetic comparison used in Theorem~\ref{spec:bottom}. Taking reciprocals proves \eqref{spec:minimumformula}. At a zero of $M(n)$ the exact kernel already proves that the smallest singular value is zero. At the other indices \eqref{spec:minimumformula} and $Q(n)/n\to c_0$ give $\sqrt n\,\sigma_n(B_n)\sim |M(n)|/(\sqrt{c_0}W_n)\to0$.
+
+Combining \eqref{spec:minimumformula} with $\sigma_1(B_n)\sim\sqrt n$ and $Q(n)\sim c_0n$ proves the condition-number assertion. Finally, the row of ones has $n$ entries, the other diagonal entries number $n-1$, and the parent incidences number $Q(n)-1$. These positions are disjoint, so
+\[
+ \norm{B_n}_{\mathrm F}^2=2n+Q(n)-2.
+\]
+The upper theorem gives $\norm{B_n}^2/n\to1$, proving the stable-rank limit.
+\end{proof}
+
+\begin{corollary}[Approximation of the full inverse]\label{spec:inversefrob}
+Along nonzero-Mertens indices,
+\[
+ \left\|B_n^{-1}+\frac{\muvec_nw_n^T}{M(n)}\right\|_F
+   =o\left(\frac{\sqrt{Q(n)}W_n}{|M(n)|}\right),
+ \qquad \operatorname{sr}(B_n^{-1})\longrightarrow1.
+\]
+Up to signs, the right singular vector of $B_n$ for its smallest singular value approaches $\muvec_n/\sqrt{Q(n)}$ in Euclidean norm, and the corresponding left singular vector approaches $w_n/W_n$. The assertion is along the invertible indices and concerns normalized vectors.
+\end{corollary}
+\begin{proof}
+Each squarefree row of $C_n$ has at most $1+\log_2 n$ entries of modulus one, and an isolated row has just one. Thus $\norm{C_n}_F^2\le n(1+\log_2 n)$. The inverse identity makes the difference in the displayed formula exactly $C_n$. Relative to the rank-one term, its Frobenius norm is
+\[
+ O\left(\frac{|M(n)|\sqrt{\log n}}{W_n}\right)=o(1)
+\]
+by the same Mertens and norm estimates. Both the operator and Frobenius norms of the inverse are therefore asymptotic to the norm of the rank-one term, proving the stable-rank assertion. After division by that norm, the inverse differs in operator norm by $o(1)$ from a rank-one matrix whose nonzero singular value is one. Its Gram matrix has the corresponding one-dimensional spectral projection plus an $o(1)$ operator error. The variational characterization of the largest eigenvalue then forces the squared inner product of its leading vector with that rank-one direction to tend to one. Apply this to both Gram matrices and interchange left and right vectors on passing from the inverse to $B_n$. This proves the directional assertions and eventual simplicity of the exceptional singular value.
+\end{proof}

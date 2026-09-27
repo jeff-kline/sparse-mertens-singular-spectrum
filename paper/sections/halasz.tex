@@ -1,0 +1,90 @@
+\section{An optional quantitative component bound from Hal\'asz's theorem}\label{app:halasz}
+
+This appendix gives a complete application of a known mean-value theorem to the actual component residual $F(n,y)$. It is independent of the Mertens estimate used for the sharper spectral scales, but does not supply a new general cancellation theorem or improve known Mertens bounds.
+
+A function $f:\mathbb N\to\mathbb C$ is multiplicative if $f(ab)=f(a)f(b)$ whenever $a,b$ are coprime, and is one-bounded if $|f(m)|\le1$. For such a function define the nonnegative quantity
+\[
+ \mathcal D(f,t;x)^2=\sum_{p\le x}\frac{1-\Re(f(p)p^{-it})}{p}.
+\]
+We use the following weakened quantitative form of Hal\'asz's theorem: there are absolute $C,c_H>0$ such that, for sufficiently large $x$ and $T>0$,
+\begin{equation}\label{app:H}
+ \frac1x\left|\sum_{m\le x}f(m)\right|
+ \le C\left(\exp\left(-c_H\min_{|t|\le T}\mathcal D(f,t;x)^2\right)+\frac1T\right).
+\end{equation}
+This is the form in~\cite[Theorem~7]{taohalasz}; a sharper primary theorem is proved in~\cite{ghs}. We import \eqref{app:H}, rather than purporting to reprove it. The elementary prime estimates used below are
+\[
+ \sum_{p\le z}\frac1p=\log\log z+O(1),\quad
+ \sum_{p\le z}\frac{\log p}{p}\ll\log z,\quad
+ \pi(z)\ll\frac z{\log z},\quad
+ \prod_{p\le z}(1-1/p)\asymp\frac1{\log z}.
+\]
+These Chebyshev--Mertens estimates do not require the prime number theorem.
+
+\begin{proposition}\label{app:quantitative}
+Let $\delta=\min(c_H/16,1/4)>0$. For every fixed $0<\alpha<1$,
+\begin{equation}\label{app:rate}
+ F(n,(\log n)^\alpha)
+ \ll_\alpha\frac{n(\log\log n)^2}{(\log n)^{2\delta}}.
+\end{equation}
+Also
+\begin{equation}\label{app:slowrate}
+ F(n,\log\log n)\ll n\left(\frac{\log\log\log n}{\log\log n}\right)^2.
+\end{equation}
+The constants and onsets are not made numerically explicit.
+\end{proposition}
+\begin{proof}
+Write $\ell=\log x$ and $\sigma=1+1/\ell$. Uniformly for real $v$, the absolutely convergent Euler product and the elementary prime estimates give
+\begin{equation}\label{app:phase}
+ \sum_{p\le x}\frac{\cos(v\log p)}p
+          =\log|\zeta(\sigma+iv)|+O(1).
+\end{equation}
+Indeed, prime powers of exponent at least two contribute $O(1)$; replacing $p^{-\sigma}$ by $p^{-1}$ below $x$ costs at most $\ell^{-1}\sum_{p\le x}(\log p)/p=O(1)$; and the tail above $x$ is bounded by a constant times $\int_x^\infty t^{-1-1/\ell}(\log t)^{-1}dt=O(1)$. Each error is independent of $v$.
+
+For $1<\sigma\le2$, comparison of the defining series with its integral gives
+\[
+ \zeta(z)=\frac z{z-1}-z\int_1^\infty\{t\}t^{-z-1}\,dt,
+ \qquad |\zeta(\sigma+iv)|\ll1+|v|+|v|^{-1}\quad(v\ne0),
+\]
+where $\{t\}=t-\lfloor t\rfloor$. This calculation stays in the half-plane of absolute convergence.
+
+Put $\mathcal E(t;x)=\sum_{p\le x}(1+\cos(t\log p))/p$. For $|t|\le\ell^{-1/2}$, retain only $p\le\exp(\sqrt\ell)$; their angles have absolute value at most one, so
+\[
+ \mathcal E(t;x)\ge\frac{1+\cos1}{2}\log\ell-O(1).
+\]
+For $\ell^{-1/2}<|t|\le T\le\sqrt\ell$, the inequality $1-\cos(2v)\le4(1+\cos v)$ and \eqref{app:phase} give
+\[
+ 4\mathcal E(t;x)\ge\log\ell-\log|\zeta(\sigma+2it)|-O(1)
+                 \ge\tfrac12\log\ell-O(1).
+\]
+Therefore, uniformly for $1\le T\le\sqrt{\log x}$,
+\begin{equation}\label{app:distance}
+ \min_{|t|\le T}\mathcal E(t;x)\ge\tfrac18\log\log x-O(1).
+\end{equation}
+
+Define $f_y(m)=\mu(m)$ when $P^-(m)>y$, and zero otherwise. It is multiplicative and one-bounded, with prime values zero below or at $y$ and minus one above it. For $x\ge y$, \eqref{app:distance} yields
+\[
+ \mathcal D(f_y,t;x)^2=\mathcal E(t;x)-\sum_{p\le y}\frac{\cos(t\log p)}p
+ \ge\tfrac18\log\log x-\log\log y-O(1).
+\]
+Take $y=(\log n)^\alpha$ and let $P_y=\prod_{p\le y}p$. Every squarefree smooth root divides $P_y$. The elementary bound $P_y\le y^y=n^{o(1)}$ shows that every divisor occurs as a root and $x=n/a\ge\sqrt n$ uniformly for large $n$. Thus $\log\log x=\log\log n+O(1)$ and $\log\log y=o(\log\log x)$. Taking $T=(\log n)^{1/4}$ in \eqref{app:H} is admissible, and gives
+\begin{equation}\label{app:Rbound}
+ |R(x,y)|/x\ll(\log n)^{-\delta}
+\end{equation}
+uniformly over every component.
+
+For the denominator, inclusion--exclusion and removal of square divisors give
+\[
+ \Phi_{\sfq}(x,y)\ge x\prod_{p\le y}(1-1/p)-2^{\pi(y)}-O(x/y).
+\]
+Since $2^{\pi(y)}\le2^y=n^{o(1)}$ and $x\ge\sqrt n$, both error terms are $o(x/\log y)$. Consequently $\Phi_{\sfq}(x,y)\gg x/\log y$. Substituting \eqref{app:Rbound} into the definition of $F$ gives
+\[
+ F(n,y)\ll\frac{n\log y}{(\log n)^{2\delta}}
+             \sum_{a\mid P_y}\frac1a
+ \ll\frac{n(\log y)^2}{(\log n)^{2\delta}},
+\]
+because $\prod_{p\le y}(1+1/p)\ll\log y$. This proves \eqref{app:rate}.
+
+For $y=\log\log n$, use the same root and denominator arguments, but take $T=\log\log n$. The exponential-distance term is smaller than $1/\log\log n$ eventually, so $|R(x,y)|/x\ll1/\log\log n$. The same final summation proves \eqref{app:slowrate}.
+\end{proof}
+
+Combining \eqref{app:rate} with $M(n)^2\le Q(n)F(n,y)$ yields a weak classical cancellation bound. The saving has already entered through \eqref{app:H}; the projection does not independently generate it. In particular this appendix cannot be used to claim a purely geometric proof of the prime number theorem.

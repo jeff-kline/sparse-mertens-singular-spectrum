@@ -1,0 +1,33 @@
+\subsection{What is needed for a stronger Mertens bound}\label{disc:mertens-improvement}
+
+The issue is not another representation of $M(n)$, but an estimate for one of its representations that uses additional cancellation. The classical comparison in this paper is \eqref{arith:mertens}: with
+\[
+ V(n)=\frac{(\log n)^{3/5}}{(\log\log n)^{1/5}},
+\]
+it gives $|M(n)|\le Cn\exp(-cV(n))$ for suitable positive constants and all sufficiently large $n$. A new proof of $M(n)=o(n)$, or of a weaker quantitative bound, would not improve this estimate. An explicit improvement must specify its constants and range; a stronger asymptotic scale must specify its rate. For example, proving $|M(n)|\le Cn\exp(-a(n))$ with $a(n)/V(n)\to\infty$ would improve the displayed scale. No such result is established here.
+
+There is a concrete sufficient condition that does not require computing a determinant. Let $\varepsilon(n)>0$ be a proposed error rate. Construct a vector $z_n\in\mathbb R^{n-1}$ and bound its residual by
+\begin{equation}\label{disc:certificate}
+ \norm{\one_n-H_n^Tz_n}_2^2
+ \le \frac{n^2\varepsilon(n)^2}{Q(n)}.
+\end{equation}
+Then $|M(n)|\le n\varepsilon(n)$. Indeed, $H_n\muvec_n=0$ implies
+\[
+ M(n)=\muvec_n^T(\one_n-H_n^Tz_n),
+\]
+and Cauchy--Schwarz gives the conclusion. Thus the missing ingredient could be an explicit choice of row coefficients together with a uniform residual estimate. Choosing the exact least-squares solution and using \eqref{geo:height} to evaluate its error merely recovers $M(n)^2/Q(n)$; it supplies no independent cancellation estimate. Since $Q(n)\sim c_0n$, the required squared residual has scale $n\varepsilon(n)^2/c_0$, with constants controlled if an explicit bound is intended.
+
+Two other sufficient certificates are already available from the geometric identities. For a choice $y=y(n)\ge2$, it suffices to prove
+\begin{equation}\label{disc:component-certificate}
+ F(n,y)\le\frac{n^2\varepsilon(n)^2}{Q(n)}.
+\end{equation}
+Alternatively, for a choice $\tau=\tau(n)>0$, it suffices to prove
+\begin{equation}\label{disc:resolvent-certificate}
+ \tau\one_n^T(H_n^TH_n+\tau I_n)^{-1}\one_n
+ \le\frac{n^2\varepsilon(n)^2}{Q(n)}.
+\end{equation}
+The first follows from \eqref{geo:variance}, the second from \eqref{geo:resolvent}. Each is a target for further work, not an estimate proved by writing the formula. In particular, the component variance identity shows that $F$ includes both the global Mertens contribution and nonnegative variation between components. A useful upper bound must control both. The fixed-power profile has $F(n,n^{1/u})\sim c_0nJ(u)$ with $J(u)>0$ for every fixed $u\ge1$; that regime cannot certify $\varepsilon(n)\to0$. Obtaining an explicit decay rate as $u$ grows requires additional quantitative control; the qualitative cutoff in Theorem~\ref{geo:profile} follows from the fixed-parameter limits and monotonicity. The displayed resolvent depends on the weights of $\one_n$ in the eigenspaces; the eigenvalue information established here alone does not control its smallness.
+
+The singular-value approach has the same unresolved step. The formula for the exceptional smallest singular value already contains $|M(n)|$. Combining that formula with the product of the other singular values therefore reproduces $|M(n)|$, rather than bounding it independently. To gain arithmetic information, one needs an independently obtained estimate for the exceptional direction, or uniform information on a growing part of the spectrum that controls the full product without importing the desired Mertens bound. Fixed-index limits, the sum of squared singular values, and the product with the smallest factor omitted do not provide that missing estimate.
+
+Any proposed improvement should therefore state three things separately: the new arithmetic or geometric input; the uniform argument transferring it to one of these certificates; and the resulting rate for $M(n)$ compared with \eqref{arith:mertens}. Bounds obtained by inserting the existing Mertens estimate into restricted sums are useful consequences, but cannot themselves serve as independent evidence for stronger cancellation.

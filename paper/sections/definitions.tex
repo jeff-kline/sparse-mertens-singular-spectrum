@@ -1,0 +1,140 @@
+\section{Definitions and exact finite identities}\label{sec:definitions}
+
+\subsection{Arithmetic notation}
+
+An integer is \emph{squarefree} if no square of a prime divides it. The M\"obius function is $\mu(1)=1$, $\mu(m)=(-1)^r$ when $m$ is a product of $r$ distinct primes, and $\mu(m)=0$ otherwise. Let
+\[
+ M(x)=\sum_{m\le x}\mu(m),\qquad
+ Q(n)=\sum_{m\le n}\mu(m)^2,\qquad c_0=\frac1{\zeta(2)}=\frac6{\pi^2}.
+\]
+Here and below a sum over integers bounded by a real number uses its floor. The function $\zeta(s)=\sum_{m\ge1}m^{-s}$ for $\Re s>1$ is the Riemann zeta function. Elementary squarefree counting gives $Q(n)=c_0n+O(\sqrt n)$: use $\mu(m)^2=\sum_{d^2\mid m}\mu(d)$, interchange sums, and bound the tail of $\sum d^{-2}$.
+
+Write $P^+(m)$ and $P^-(m)$ for the largest and smallest prime factors of $m>1$, with $P^+(1)=1$ and $P^-(1)=\infty$. The function $\pi(x)$ counts primes at most $x$; the unadorned constant $\pi$ retains its usual geometric meaning. An integer is $y$-smooth if $P^+(m)\le y$ and $y$-rough if $P^-(m)>y$. The inequalities are inclusive for smoothness and strict for roughness. For $x\ge1$ and $y\ge1$, define
+\begin{align}
+ \Psi(x,y)&=\#\{m\le x:P^+(m)\le y\},\notag\\
+ \Phi(x,y)&=\#\{m\le x:P^-(m)>y\},\notag\\
+ \Phi_{\sfq}(x,y)&=\sum_{\substack{m\le x\\P^-(m)>y}}\mu(m)^2,\label{def:counts}\\
+ R(x,y)&=\sum_{\substack{m\le x\\P^-(m)>y}}\mu(m).\notag
+\end{align}
+All four quantities include the integer one. In particular $\Phi_{\sfq}(x,y)\ge1$. The signed sum $R$ is not a count of primes and need not be positive. For arithmetic functions $f,g$, their Dirichlet convolution is $(f*g)(m)=\sum_{d\mid m}f(d)g(m/d)$. An indicator $\mathbf1_{\mathcal E}$ equals one when the condition $\mathcal E$ holds and zero otherwise.
+
+For sufficiently large $x$ put $s(x)=\sqrt{\log x\log\log x}$; all logarithms are natural. For a prime $p\le n$ set $b_p(n)=R(n/p,p)$ and define the two nonnegative sums
+\begin{equation}\label{def:energies}
+ E_P(n)=\sum_{p\le n}|b_p(n)|^2,\qquad
+ E(n)=\sum_{\substack{2\le j\le n\\\mu(j)^2=1}}
+          R(n/j,P^+(j))^2.
+\end{equation}
+The word \emph{energy}, when used for these quantities, means precisely this sum of squared signed counts. It carries no additional normalization. The later component quantity $F(n,y)$ has different denominators and will be defined separately.
+
+For positive functions, $f\sim g$ means $f/g\to1$. The notation $f\ll g$ or $f=O(g)$ means $|f|\le Cg$ eventually; subscripts indicate permitted dependence of $C$. The expression $o(1)$ tends to zero in the stated limit. An equality such as $E_P=n^2\exp(-(2+o(1))s(n))$ specifies a leading logarithmic scale, not a multiplicative equivalent with an explicit prefactor.
+
+The notation $f\asymp g$ means that both $f\ll g$ and $g\ll f$ hold. Unless another limit is specified, asymptotic statements concern $n\to\infty$ through positive integers.
+
+\subsection{The tree and its matrices}
+
+For each squarefree $i>1$ draw an edge from its parent $i/P^+(i)$ to $i$. Deleting the largest prime repeatedly reaches one, so the squarefree vertices at most $n$ form a tree. Each nonsquarefree vertex is isolated. We say $j\preceq i$ if $j$ and $i$ are squarefree and $j$ occurs on the parent chain from $i$ to one, including $j=i$. Thus $j$ consists of an initial segment of the prime factors of $i$, listed in increasing order. A descendant of $j$ is a vertex $i$ with $j\preceq i$. For squarefree $j$, its number of descendants is
+\[
+ D_j(n)=\Phi_{\sfq}(n/j,P^+(j)).
+\]
+Its number of children is
+\begin{equation}\label{def:degree}
+ d_j(n)=\max\{0,\pi(n/j)-\pi(P^+(j))\}.
+\end{equation}
+Set $d_j(n)=0$ for nonsquarefree $j$, and let $k_n=\#\{j\le n:d_j(n)>0\}$. Let $d_{(1)}(n)\ge\cdots\ge d_{(n)}(n)$ be these degrees in decreasing order, including zeros. In particular $d_1(n)=\pi(n)$.
+
+In $\mathbb R^n$, $e_j$ is the $j$th coordinate vector, $\one_n=(1,\ldots,1)^T$, and $I_n$ is the identity. Define
+\begin{equation}\label{def:matrices}
+ (S_n)_{ij}=\begin{cases}1,&\mu(i)^2=1,\ i>1,\ j=i/P^+(i),\\0,&\text{otherwise},\end{cases}
+ \quad A_n=I_n+S_n,\quad
+ B_n=A_n+e_1u_n^T,\quad u_n=\one_n-e_1.
+\end{equation}
+The first row of $A_n$ is $e_1^T$ and the first row of $B_n$ is $\one_n^T$. Their other rows agree. The matrix $S_n$ is strictly lower triangular; hence it is nilpotent and $A_n$ is invertible with determinant one. Set
+\begin{equation}\label{def:vectors}
+ C_n=A_n^{-1},\qquad
+ \muvec_n=(\mu(1),\ldots,\mu(n))^T,\qquad
+ w_n=C_n^Tu_n,\qquad W_n=\norm{w_n}_2.
+\end{equation}
+Thus $w_n$ is a specifically defined vector, rather than a standard arithmetic function. Its coordinate description below explains why restricted M\"obius sums enter.
+
+For $n=6$, the nonzero off-diagonal entries of $S_n$ are at $(2,1),(3,1),(5,1),(6,2)$; the index four is isolated. In this case
+\[
+ \muvec_6=(1,-1,-1,0,-1,1)^T,\qquad
+ w_6=(-2,0,1,1,1,1)^T.
+\]
+This example also distinguishes the ancestor relation from divisibility: three divides six, but is not its ancestor.
+
+\subsection{Norms, singular values, and projections}
+
+The real Hilbert space $\ell^2(\mathbb N)$ consists of sequences $x=(x_j)_{j\ge1}$ for which $\sum_jx_j^2<\infty$, with inner product $\langle x,y\rangle=\sum_jx_jy_j$. A vector in $\mathbb R^n$ is viewed there by adjoining zero coordinates; a finite matrix acts as zero outside its first $n$ coordinates whenever an infinite-space limit is discussed.
+
+The Euclidean inner product is $x^Ty$ and its norm is $\norm{x}_2$. The operator norm of a matrix $T$ is $\norm{T}_2=\sup_{\norm{x}_2=1}\norm{Tx}_2$; its Frobenius norm is $\norm{T}_F=(\sum_{ij}|T_{ij}|^2)^{1/2}$. Its singular values are the square roots of the eigenvalues of $T^TT$, counted with multiplicity. For the square matrices here we write
+\[
+ \sigma_1(T)\ge\cdots\ge\sigma_n(T)\ge0.
+\]
+When the matrix is omitted, $\sigma_i$ means $\sigma_i(B_n)$. For a nonzero vector $z$, the orthogonal projection onto its perpendicular subspace is explicitly
+\begin{equation}\label{def:projection}
+ \mathsf P_z=I-\frac{zz^T}{z^Tz},\qquad
+ \mathsf P_z x=x-z\frac{z^Tx}{z^Tz}.
+\end{equation}
+For a unit vector the denominator is one. This projection removes the component parallel to $z$; it is not the projection onto its span. All later projections specify their ambient space. A subspace \emph{reduces} a matrix if it and its orthogonal complement are invariant under both the matrix and its transpose.
+
+\begin{proposition}[Exact inverse and determinant]\label{def:inverse}
+On squarefree indices,
+\[
+ (C_n)_{ij}=\begin{cases}\mu(i/j),&j\preceq i,\\0,&\text{otherwise}.
+ \end{cases}
+\]
+Each nonsquarefree row and column of $C_n$ has just its diagonal entry one. Moreover
+\begin{equation}\label{def:rankone}
+ C_ne_1=\muvec_n,\qquad \det B_n=M(n),\qquad
+ B_n^{-1}=C_n-\frac{\muvec_nw_n^T}{M(n)}\quad(M(n)\ne0).
+\end{equation}
+For all $n$, including $M(n)=0$,
+\begin{equation}\label{def:adjugate}
+ \adj(B_n)=M(n)C_n-\muvec_nw_n^T.
+\end{equation}
+\end{proposition}
+\begin{proof}
+The finite geometric series $C_n=\sum_{r=0}^{n-1}(-S_n)^r$ counts the unique parent path from an ancestor $j$ to a descendant $i$. A path of length $r$ adds $r$ distinct primes and therefore has sign $(-1)^r=\mu(i/j)$. Isolated vertices give the stated diagonal entries. This also proves the first column formula.
+
+The determinant identity for a rank-one update gives
+\[
+ \det(A_n+e_1u_n^T)=1+u_n^TC_ne_1
+ =1+\sum_{j=2}^n\mu(j)=M(n).
+\]
+Multiplication verifies the inverse formula when the scalar is nonzero. To obtain the adjugate identity without a nonsingularity restriction, apply the same calculation to $A_n+t e_1u_n^T$. For all but at most one real $t$ its adjugate is
+\[
+ (1+t u_n^TC_ne_1)C_n-t\muvec_nw_n^T.
+\]
+Both sides are matrix polynomials in $t$, so the identity holds for every $t$, in particular at $t=1$.
+\end{proof}
+
+\begin{proposition}[Coordinates and squared norm of $w_n$]\label{def:wnorm}
+For $n\ge2$,
+\[
+ (w_n)_j=\begin{cases}
+ M(n)-1,&j=1,\\
+ R(n/j,P^+(j)),&j\ge2\text{ squarefree},\\
+ 1,&j\text{ nonsquarefree}.
+ \end{cases}
+\]
+Consequently
+\begin{equation}\label{def:wnormidentity}
+ W_n^2=E(n)+(M(n)-1)^2+n-Q(n),\qquad
+ \norm{\muvec_n}_2^2=Q(n).
+\end{equation}
+\end{proposition}
+\begin{proof}
+The $j$th coordinate of $C_n^Tu_n$ is the sum of column $j$ of $C_n$ over rows two through $n$. For $j=1$ it is the sum of $\mu(i)$ with its first term removed. For squarefree $j\ge2$, descendants are exactly $jd$ with $P^-(d)>P^+(j)$ and $d$ squarefree; the corresponding inverse entries are $\mu(d)$. For an isolated nonsquarefree column only its diagonal one contributes. Squaring and summing proves the identities.
+\end{proof}
+
+Two further counts will be useful. Distinct nonzero columns of $S_n$ have disjoint supports, so
+\begin{equation}\label{def:orthocolumns}
+ S_n^TS_n=\diag(d_1(n),\ldots,d_n(n)),\qquad
+ \sum_jd_j(n)=Q(n)-1.
+\end{equation}
+Since all nonzero entries of $A_n$ and $B_n$ equal one,
+\begin{equation}\label{def:frobenius}
+ \norm{A_n}_F^2=n+Q(n)-1,\qquad
+ \norm{B_n}_F^2=2n+Q(n)-2,\qquad \tr B_n=n.
+\end{equation}

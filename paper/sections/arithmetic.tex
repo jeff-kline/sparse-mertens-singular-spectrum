@@ -1,0 +1,654 @@
+\section{Restricted M\"obius sums and their moments}\label{sec:arithmetic}
+
+This section develops the arithmetic tools needed for the exceptional singular
+value. All analytic cancellation comes from classical Mertens and smooth-number
+estimates. The moment and support-constrained statements are consequences of
+those inputs; no arithmetic priority claim is attached to their formulation.
+Throughout, $n\to\infty$, and we write
+\[
+ L=\log n,\qquad s=s(n)=\sqrt{L\log L},\qquad
+ b_p(n)=R(n/p,p),\qquad E_P(n)=\sum_{p\le n}b_p(n)^2.
+\]
+All sums indexed by $p$ or $q$ as primes below are explicitly so indicated when
+there could be ambiguity. Arguments of counting functions may be real, with the
+usual floor convention. Constants may depend on fixed compact intervals and on
+fixed moment parameters, but never on a prime varying in the stated interval.
+
+\subsection{Classical inputs and their ranges}
+
+Let $\rho$ be the Dickman function, defined by $\rho(v)=1$ for $0\le v\le1$,
+$\rho(v)=0$ for $v<0$, and
+\[
+ v\rho'(v)=-\rho(v-1)\qquad(v>1).
+\]
+We use the following classical estimates, recording the needed specialization
+rather than assuming an asymptotic for $R$ itself. The ordinary Mertens bound is
+\begin{equation}\label{arith:mertens}
+ |M(z)|\le C z\exp\left\{-c\frac{(\log z)^{3/5}}
+ {(\log\log z)^{1/5}}\right\}
+ \le C z e^{-c(\log z)^{7/12}}\qquad(z\ge z_0).
+\end{equation}
+The second inequality follows after changing $c,C$, since
+$(\log z)^{1/60}/(\log\log z)^{1/5}\to\infty$.
+For a modern explicit statement implying the first inequality, including a
+logarithmic prefactor absorbable into the exponential, see
+Lee--Leong~\cite[Theorem~1.1, (12)]{leeleong}.
+
+Here is the precise smooth-number input. Fix $0<c_-<c_+<\infty$ and $D>0$.
+Suppose
+\[
+ c_-s\le t=\log y\le c_+s,\qquad
+ |\log x-L|\le Ds,\qquad
+ \log x-L^{9/10}\le\log z\le\log x.
+\]
+Uniformly over these choices, with $v=\log z/t$,
+\begin{equation}\label{arith:smooth-input}
+ \Psi(z,y)=z\left\{\rho(v)+(\gamma-1)\frac{\rho'(v)}t
+ +O\left(\rho(v)\left(\frac{\log(v+1)}t\right)^2\right)\right\},
+\end{equation}
+where $\gamma$ is Euler's constant. We also use, uniformly as $v\to\infty$,
+\begin{equation}\label{arith:dickman-input}
+ -\rho'(v)\asymp\rho(v)\log(v+1),\qquad
+ |\rho''(v)|\ll\rho(v)\log^2(v+1),\qquad
+ \log\rho(v)=-(1+o(1))v\log v.
+\end{equation}
+Only arguments tending uniformly to infinity occur in the derivative estimates,
+so the low-argument changes of differentiability are irrelevant.
+
+For clarity, these are specializations of established smooth-number theory,
+not additional hypotheses. McNew~\cite[(7), (13), (14), (17)]{mcnew}
+records the Hildebrand first-order estimate, the de Bruijn--Saias expansion,
+and the derivative estimates; see also Saias~\cite{saias} and the survey
+of Hildebrand--Tenenbaum~\cite{hildebrandtenenbaum}.
+The first-order statement alone would not suffice here.
+In the notation of that expansion, take two terms (the derivative order
+parameter $k=1$). The coefficient of $\rho'(v)/t$ is $\gamma-1$,
+and the relative remainder after the two terms is of order
+$(\log(v+1)/t)^2$ in the present range.
+The source range contains
+\[
+ y>\exp\{(\log\log z)^{5/3+\varepsilon}\},\qquad
+ y>(\log z)^{1+\varepsilon},\qquad y<z,
+\]
+with any fixed sufficiently small $\varepsilon>0$.
+The extra boundary inequalities for $k=1$ in (13) are
+\[
+ \frac v2\ge\frac{\log t}{t},\qquad
+ v-1\ge\frac{\log t}{t}.
+\]
+Indeed our substitutions give $\log z=L(1-o(1))$,
+$t\asymp\sqrt{L\log L}$, and
+$v\asymp\sqrt{L/\log L}$. All these inequalities therefore hold uniformly
+with a diverging margin. The exponentially small relative error in the
+Saias estimate is $o((\log(v+1)/t)^2)$ here. Since
+$\rho'(v)/(t\rho(v))=O(\log(v+1)/t)=o(1)$, the multiplicative
+remainder in the source yields exactly the additive remainder in
+\eqref{arith:smooth-input}. In particular, no exclusion of integer $v$ is
+needed in this range. The derivative and ratio estimates recorded there,
+together with the defining Dickman equation, give
+\eqref{arith:dickman-input}.
+
+We also use the prime number theorem and Chebyshev's upper bound
+$\pi(z)\ll z/\log z$. The series application additionally uses
+Mertens' product bound
+\[
+ \prod_{p\le y}(1-1/p)^{-1}\ll\log(2y).
+\]
+The weaker estimate
+\begin{equation}\label{arith:harmonic-product}
+ \prod_{p\le y}(1-1/p)^{-1}
+ =\exp\{O(\log\log(3y))\}
+\end{equation}
+already suffices for the moment proof. Partial summation of Chebyshev gives
+\[
+ \sum_{p\le y}p^{-1}=O(\log\log(3y)),
+\]
+and higher prime powers have a bounded total contribution to the logarithm
+of the product.
+
+\subsection{Two exact convolutions and a uniform upper bound}
+
+Let $S_y(a)$ be the indicator of $P^+(a)\le y$, including $a=1$.
+The coefficient identity
+$(\mu*S_y)(d)=\mu(d)\one_{P^-(d)>y}$ follows prime by prime:
+the local factor is $1$ at primes at most $y$ and $1-X$ at larger primes.
+Summing its coefficients in either order gives
+\begin{equation}\label{arith:convolutions}
+ R(x,y)=\sum_{\substack{a\le x\\P^+(a)\le y}}M(x/a)
+       =\sum_{k\le x}\mu(k)\Psi(x/k,y).
+\end{equation}
+These are finite identities and include the coefficient at $1$.
+Replacing $M$ by $|M|$ in the first identity gives a positive majorant
+which increases with $y$.
+
+\begin{lemma}\label{arith:upper-local}
+Fix $0<c_-<c_+<\infty$ and $D>0$. Uniformly for
+$|\log x-L|\le Ds$ and $\log y=cs$ with $c_-\le c\le c_+$,
+\[
+ |R(x,y)|\le x\exp\left\{-\left(\frac1{2c}+o(1)\right)s\right\}.
+\]
+The same bound holds for the positive majorant just described.
+\end{lemma}
+\begin{proof}
+Put $h=L^{9/10}$ and split the first sum in
+\eqref{arith:convolutions} at $a=xe^{-h}$. By
+\eqref{arith:mertens} with exponent $7/12$, the part below this point is
+at most
+\[
+ Cxe^{-ch^{7/12}}\sum_{P^+(a)\le y}\frac1a
+ \le x\exp\{-cL^{21/40}+O(\log L)\}=x e^{-\omega(s)}.
+\]
+Here and below $e^{-\omega(s)}$ means a quantity bounded by
+$e^{-As}$ for every fixed $A>0$ once $n$ is sufficiently large.
+For the remaining part use $|M(x/a)|\le x/a$ and Rankin's inequality.
+With $u=\log x/t$, $t=\log y$, and $\alpha=\log u/t$, it is at most
+\begin{equation}\label{arith:rankin}
+ xe^{-\alpha(\log x-h)}
+ \prod_{p\le y}(1-p^{-1+\alpha})^{-1}.
+\end{equation}
+Uniformly in this range, $u\to\infty$ and $0<\alpha\le1/4$ eventually.
+Higher prime-power terms in the logarithm of the product are $O(1)$,
+and Chebyshev partial summation bounds the prime terms by
+\[
+ O(1)+O(e^{\alpha t}/t)
+ +O\left(\int_{\log2}^t\frac{e^{\alpha v}}v\,dv\right)
+ =O(\log t+e^{\alpha t})=O(\log L+u)=o(s).
+\]
+To see the integral bound, split at $1/\alpha$. Below this point use a
+bounded exponential; above it substitute $w=\alpha v$ and use
+$\int_1^T e^w/w\,dw\ll e^T$. Finally $\alpha h=o(s)$ and
+\[
+ \alpha\log x=u\log u=\left(\frac1{2c}+o(1)\right)s
+\]
+uniformly on the fixed compact interval. Substitution in
+\eqref{arith:rankin} completes the proof.
+\end{proof}
+
+\subsection{A relative asymptotic at the saddle scale}
+
+\begin{lemma}\label{arith:bridge}
+Under the ranges of Lemma~\ref{arith:upper-local}, put
+$t=\log y$ and $u=\log x/t$. Then
+\begin{equation}\label{arith:rough-asymptotic}
+ R(x,y)=(1+o(1))\frac{x\rho'(u)}t
+\end{equation}
+uniformly. In particular it is negative for all sufficiently large $n$
+throughout this range.
+\end{lemma}
+\begin{proof}
+Set $a_0=7/12$, $K=\lfloor\exp((\log L)^2)\rfloor$,
+$H=\exp(L^{9/10})$, and $\beta=\log(u+1)/t$.
+Here $\beta\asymp\sqrt{\log L/L}$. For $0\le w\le L^{9/10}$,
+all arguments between $u-w/t$ and $u$ are $(1-o(1))u$.
+Integrating the logarithmic derivative bound in
+\eqref{arith:dickman-input} gives
+\begin{equation}\label{arith:dickman-shift}
+ \rho(u-w/t)\le\rho(u)e^{C\beta w}.
+\end{equation}
+
+First truncate the second identity in \eqref{arith:convolutions} without
+losing M\"obius cancellation. Interchanging its tail sums gives exactly
+\begin{equation}\label{arith:tail-exact}
+ T_K:=\sum_{K<k\le x}\mu(k)\Psi(x/k,y)
+ =\sum_{\substack{a\le x/K\\P^+(a)\le y}}
+       \{M(x/a)-M(K)\}.
+\end{equation}
+An endpoint with $x/a=K$ contributes zero, so this formula is unchanged by
+floors. The contribution from $M(K)$ is bounded using
+\eqref{arith:smooth-input} and \eqref{arith:dickman-shift} by
+\[
+ |M(K)|\Psi(x/K,y)
+ \ll x\rho(u)\exp\{-c(\log K)^{a_0}+C\beta\log K\}.
+\]
+For the terms with $K<x/a<H$, split $x/a$ into dyadic intervals
+$[q,2q)$ starting at $K$, cutting the last one at $H$ if necessary.
+There are at most $\Psi(x/q,y)$ eligible integers $a$ in one interval.
+The Mertens bound and the same two smooth estimates therefore bound its
+contribution by
+\[
+ Cx\rho(u)\exp\{-c'(\log q)^{a_0}+C\beta\log q\}.
+\]
+Uniformly for $\log K\le v\le\log H$,
+\[
+ \beta v^{1-a_0}\le
+ O\left(L^{-1/2+(9/10)(1-a_0)}\sqrt{\log L}\right)=o(1).
+\]
+Thus the positive term in the exponent is absorbed. Even counting all
+$O(L)$ possible dyadic intervals, their sum is at most
+$x\rho(u)\exp\{-c''(\log K)^{a_0}\}$ after reducing $c''$,
+since $(\log K)^{a_0}\asymp(\log L)^{7/6}\gg\log L$.
+
+For $x/a\ge H$, use \eqref{arith:harmonic-product} to obtain
+\[
+ \sum_{\substack{P^+(a)\le y\\x/a\ge H}}|M(x/a)|
+ \ll x e^{-c(\log H)^{a_0}}
+        \prod_{p\le y}(1-1/p)^{-1}
+ \le x\exp\{-cL^{21/40}+O(\log L)\}.
+\]
+By \eqref{arith:dickman-input}, $|\log\rho(u)|=O(s)$; since
+$21/40>1/2$, this last bound is $o(x\rho(u)\beta)$.
+The previous bounds have the same property because
+$(\log L)^{7/6}\gg|\log\beta|$. We have proved
+\begin{equation}\label{arith:tail-small}
+ T_K=o(x\rho(u)\beta)
+\end{equation}
+uniformly.
+
+It remains to expand only the short initial sum $k\le K$.
+Since $\beta\log K=o(1)$, Taylor's theorem and
+\eqref{arith:dickman-input}--\eqref{arith:dickman-shift} give
+\begin{align*}
+ \rho(u-\log k/t)&=\rho(u)-\frac{\log k}{t}\rho'(u)
+       +O\bigl(\rho(u)\beta^2(\log k)^2\bigr),\\
+ \frac{\rho'(u-\log k/t)}t&=\frac{\rho'(u)}t
+       +O\bigl(\rho(u)\beta^2\log k\bigr).
+\end{align*}
+Let
+$A_0(K)=\sum_{k\le K}\mu(k)/k$ and
+$A_1(K)=\sum_{k\le K}\mu(k)\log k/k$.
+Applying \eqref{arith:smooth-input} and summing its errors absolutely yields
+\begin{align}\label{arith:short-expansion}
+ \sum_{k\le K}\mu(k)\Psi(x/k,y)
+ &=x\rho(u)A_0(K)-\frac{x\rho'(u)}t A_1(K)\notag\\
+ &\quad +(\gamma-1)\frac{x\rho'(u)}t A_0(K)
+ +O\bigl(x\rho(u)\beta^2(1+\log K)^3\bigr).
+\end{align}
+The cubic factor bounds $\sum_{k\le K}(1+\log k)^2/k$.
+
+For completeness, the two M\"obius moments here satisfy
+\begin{equation}\label{arith:mobius-moments}
+ A_0(K)=O(e^{-c_1(\log K)^{a_0}}),\qquad
+ A_1(K)=-1+O(e^{-c_1(\log K)^{a_0}}).
+\end{equation}
+Indeed partial summation with \eqref{arith:mertens} proves convergence
+of both infinite series and bounds their tails by a polynomial in
+$\log K$ times $e^{-c(\log K)^{a_0}}$.
+The same integrable bounds justify letting $\sigma\downarrow1$ in
+$\sum\mu(k)k^{-\sigma}=1/\zeta(\sigma)$ and its derivative.
+The simple pole of $\zeta$ at $1$ then gives values $0$ and $-1$,
+respectively. Absorb the polynomial into a smaller $c_1$ to obtain
+\eqref{arith:mobius-moments}.
+Now $\beta(1+\log K)^3=o(1)$ and
+$|\rho'(u)|/t\asymp\rho(u)\beta$.
+Equations \eqref{arith:tail-small}--\eqref{arith:mobius-moments}
+leave precisely $x\rho'(u)/t$ as the main term, proving the lemma.
+\end{proof}
+
+The two-term input is essential to this argument. A relative error of order
+$\beta$ in the first-order smooth estimate would be as large as the surviving
+term after $A_0(\infty)=0$ cancels the density term.
+
+\subsection{Moments, the maximum, and prime concentration}
+
+\begin{theorem}\label{arith:moments}
+For every fixed real $q>1$,
+\begin{equation}\label{arith:moment-law}
+ \sum_{p\le n}|b_p(n)|^q
+ =n^q\exp\{-(\sqrt{2q(q-1)}+o(1))s\}.
+\end{equation}
+Moreover
+\begin{equation}\label{arith:maximum}
+ \max_{p\le n}|b_p(n)|
+ =n\exp\{-(\sqrt2+o(1))s\}.
+\end{equation}
+For every fixed $0<\delta<1$, there is $\eta_\delta>0$ such that
+\begin{equation}\label{arith:concentration}
+ \sum_{\substack{p\le n\\|\log p/s-1|>\delta}}b_p(n)^2
+ \le n^2e^{-(2+\eta_\delta)s}
+\end{equation}
+for all sufficiently large $n$.
+\end{theorem}
+\begin{proof}
+For a fixed compact interval $0<c_-\le\log p/s\le c_+$,
+Lemma~\ref{arith:upper-local} applied to $x=n/p$, $y=p$ gives
+\[
+ |b_p(n)|\le\frac np
+ \exp\left\{-\left(\frac{s}{2\log p}+o(1)\right)s\right\}.
+\]
+In a bin $e^{as}<p\le e^{bs}$ within this interval, it follows that
+\begin{equation}\label{arith:bin}
+ \sum_{e^{as}<p\le e^{bs}}|b_p(n)|^q
+ \ll_q n^q\exp\left\{-\left((q-1)a+\frac q{2b}-o(1)\right)s\right\},
+\end{equation}
+since $\sum_{m>e^{as}}m^{-q}\ll_q e^{-(q-1)as}$.
+Cover the compact interval by finitely many bins of mesh at most $\varepsilon$.
+As the mesh decreases their costs approach
+\[
+ f_q(c)=(q-1)c+\frac q{2c},\qquad
+ \min_{c>0}f_q(c)=\sqrt{2q(q-1)},\qquad
+ c_q=\sqrt{\frac q{2(q-1)}}.
+\]
+
+The two noncompact prime ranges require separate bounds. For $p<e^{c_-s}$,
+enlarge the smoothness parameter in the positive majorant of
+\eqref{arith:convolutions} to $y_0=e^{c_-s}$, keeping $x=n/p$.
+Lemma~\ref{arith:upper-local} gives a total at most
+\[
+ n^q\exp\{-(q/(2c_-)-o(1))s\}\sum_p p^{-q}.
+\]
+Choose $c_-$ sufficiently small. For $p>e^{c_+s}$ the bound
+$|b_p(n)|\le n/p$ gives total
+$O_q(n^qe^{-(q-1)c_+s})$; choose $c_+$ sufficiently large.
+For each desired error first fix these endpoints and a sufficiently fine
+mesh, and only then let $n\to\infty$.
+This proves the upper bound in \eqref{arith:moment-law}.
+The same argument pointwise minimizes $c+1/(2c)$ to $\sqrt2$.
+Its small-prime and large-prime costs are $1/(2c_-)$ and $c_+$,
+respectively, proving the upper bound in \eqref{arith:maximum}
+without taking a nonuniform limit $q\to\infty$.
+
+For the lower bounds fix any $c>0$ and take primes in
+$[P,2P]$, $P=e^{cs}$. Lemma~\ref{arith:bridge} and
+\eqref{arith:dickman-input} give uniformly in this block
+\begin{equation}\label{arith:block-law}
+ |b_p(n)|=n\exp\{-(c+1/(2c)+o(1))s\}.
+\end{equation}
+Indeed $u=\log(n/p)/\log p$ satisfies
+$u\log u=(1/(2c)+o(1))s$, and logarithms of the derivative and
+$1/\log p$ prefactors are $o(s)$.
+The prime number theorem supplies
+$\pi(2P)-\pi(P)=\exp\{(c+o(1))s\}$ primes.
+Taking $c=c_q$ yields the matching moment lower bound, while taking
+$c=1/\sqrt2$ and any prime in the block yields the maximum lower bound.
+
+Finally set $q=2$ in the bin argument. The cost is $c+1/c$,
+whose unique minimum is $2$ at $c=1$.
+Outside $(1-\delta,1+\delta)$ its infimum exceeds $2$.
+Choose the remote endpoints so that their costs also exceed $2$,
+and choose a mesh small enough to preserve half the positive gap.
+The same finite-bin estimates, absorbing their number into the gap,
+prove \eqref{arith:concentration}.
+\end{proof}
+
+No assertion here is uniform in a varying $q$. In particular,
+\eqref{arith:moment-law} at $q=2$ gives
+$E_P(n)=n^2e^{-(2+o(1))s}$, and \eqref{arith:concentration}
+then gives concentration relative to the total prime energy.
+
+\subsection{Composite multipliers and the inverse-vector norm}
+
+Recall the full energy and the inverse-vector norm from the finite identities:
+\[
+ E(n)=\sum_{\substack{2\le j\le n\\\mu(j)^2=1}}
+       R(n/j,P^+(j))^2,\qquad W_n=\norm{w_n}_2,
+\]
+\begin{equation}\label{arith:norm-recalled}
+ W_n^2=E(n)+(M(n)-1)^2+n-Q(n).
+\end{equation}
+Here $Q(n)=\sum_{j\le n}\mu(j)^2$ is a count, not its square root.
+
+\begin{theorem}\label{arith:energy}
+The prime and full energies and the inverse-vector norm satisfy
+\begin{gather}
+ E_P(n)=n^2e^{-(2+o(1))s},\qquad
+ E(n)=n^2e^{-(2+o(1))s},\qquad W_n=ne^{-(1+o(1))s},
+ \label{arith:energy-scale}\\
+ \frac{E(n)}{E_P(n)}\longrightarrow\frac{15}{\pi^2},\qquad
+ \frac{W_n^2}{E_P(n)}\longrightarrow\frac{15}{\pi^2}.
+ \label{arith:energy-ratio}
+\end{gather}
+These conclusions do not give a multiplicative equivalent for $E_P(n)$ itself.
+\end{theorem}
+\begin{proof}
+The prime-energy assertion has just been proved. Every squarefree $j\ge2$
+has a unique factorization $j=ap$ with $p=P^+(j)>P^+(a)$ and $a$
+squarefree, including $a=1$. Consequently
+\begin{equation}\label{arith:multiplier-decomposition}
+ E(n)=\sum_{a\ge1}\mu(a)^2
+       \sum_{\substack{p>P^+(a)\\ap\le n}}R(n/(ap),p)^2.
+\end{equation}
+Put $A=e^{3s}$ and $\mathcal C_n=\{p:e^{s/2}\le p\le e^{2s}\}$.
+The contribution of $a>A$, by $|R(x,p)|\le x$ for $x\ge1$, is at most
+\[
+ n^2\sum_{a>A}a^{-2}\sum_p p^{-2}=O(n^2/A)=o(E_P(n)).
+\]
+
+For $a\le A$ set $N_a=\lfloor n/a\rfloor$. The exact floor identity is
+\begin{equation}\label{arith:floor}
+ R(n/(ap),p)=R(N_a/p,p):
+ \quad pd\le n/a\ \Longleftrightarrow\ pd\le N_a
+ \quad\hbox{for integers }p,d.
+\end{equation}
+Uniformly over these multipliers,
+\[
+ N_a=(n/a)(1+O(A/n)),\qquad
+ \log N_a=L-\log a+O(A/n),\qquad s(N_a)/s=1+o(1),
+\]
+and $\min_{a\le A}N_a\to\infty$.
+For all sufficiently large $n$, the complement of $\mathcal C_n$ lies
+outside the band $|\log p/s(N_a)-1|\le1/3$, uniformly in $a\le A$.
+Apply \eqref{arith:concentration} at the integer $N_a$ and drop the
+restriction $p>P^+(a)$. For one fixed $\eta>0$, the total contribution
+from $a\le A$, $p\notin\mathcal C_n$ is bounded by
+\[
+ \sum_{a\le A}N_a^2e^{-(2+\eta)s(N_a)}
+ \le n^2e^{-(2+\eta/2)s}\sum_{a\ge1}a^{-2}=o(E_P(n)).
+\]
+This invocation is uniform because the same theorem holds at every
+sufficiently large integer, and all the $N_a$ tend to infinity together.
+
+It remains to compare central terms multiplicatively. For $p\in\mathcal C_n$
+put $t=\log p$, $u=\log(n/p)/t$, and $v=u-\log a/t$.
+Lemma~\ref{arith:bridge} applies uniformly both at $(n/p,p)$ and at
+$(n/(ap),p)$ because their first logarithms equal $L+O(s)$.
+Equivalently one may use \eqref{arith:floor}: replacing $N_a$ by $n/a$
+changes the Dickman argument by $O(A/(nt))$, which is negligible under
+the logarithmic derivative bound below. Thus
+\begin{equation}\label{arith:multiplier-ratio}
+ \frac{R(n/(ap),p)}{R(n/p,p)}
+ =(1+o(1))\frac1a\frac{\rho'(v)}{\rho'(u)}
+ \qquad(a\le A,\ p\in\mathcal C_n)
+\end{equation}
+with a common relative error. The denominator is nonzero by
+Lemma~\ref{arith:bridge}. All arguments from $v$ to $u$ tend uniformly
+to infinity, and $0\le u-v\le6$.
+Equation \eqref{arith:dickman-input} gives
+\[
+ \left|\frac{d}{dz}\log(-\rho'(z))\right|
+ \ll\log(z+1),\qquad
+ \left|\frac{\rho'(v)}{\rho'(u)}\right|
+ \le\exp\left\{C\frac{\log L}{s}\log a\right\}.
+\]
+As $\log L/s\to0$, for any fixed $0<\varepsilon<1$ we obtain
+\begin{equation}\label{arith:domination}
+ R(n/(ap),p)^2\le C a^{-2+\varepsilon}R(n/p,p)^2
+\end{equation}
+uniformly in the truncated region for all sufficiently large $n$.
+For each fixed $a$, \eqref{arith:multiplier-ratio} instead gives the
+uniform equivalent $a^{-2}$ after squaring; also $p>P^+(a)$ throughout
+$\mathcal C_n$ eventually.
+
+Define the normalized central contribution explicitly by
+\[
+ \mathcal E_{a,n}=\mathbf1_{a\le A}\frac{\mu(a)^2}{E_P(n)}
+ \sum_{\substack{p\in\mathcal C_n\\p>P^+(a),\ ap\le n}}
+ R(n/(ap),p)^2.
+\]
+It is bounded by
+$C\mu(a)^2a^{-2+\varepsilon}$, a summable sequence independent of $n$.
+For each fixed $a$ it tends to $\mu(a)^2/a^2$, since central prime energy
+is $(1+o(1))E_P(n)$. Dominated convergence, followed by the two discarded
+tail estimates, proves
+\[
+ \frac{E(n)}{E_P(n)}\longrightarrow
+ \sum_{a\ge1}\frac{\mu(a)^2}{a^2}
+ =\prod_p(1+p^{-2})=\frac{\zeta(2)}{\zeta(4)}=\frac{15}{\pi^2}.
+\]
+Finally \eqref{arith:mertens} implies
+$(M(n)-1)^2=o(E_P(n))$, since $L^{7/12}/s\to\infty$,
+and $n-Q(n)\le n=o(E_P(n))$. The exact norm identity
+\eqref{arith:norm-recalled} proves the remaining assertions.
+\end{proof}
+
+\subsection{Sharp support constraints and exceptional cutoffs}
+
+For fixed $\kappa>0$ define
+\[
+ F_\kappa(n)=\sup_{\substack{|a_p|\le1\\
+ \#\{p\le n:a_p\ne0\}\le\lfloor e^{\kappa s}\rfloor}}
+ \left|\sum_{2\le m\le n}\mu(m)a_{P^-(m)}\right|.
+\]
+Weights may be complex and may depend on $n$. Grouping a squarefree
+integer $m$ by its least prime $p$ gives the exact identity
+\begin{equation}\label{arith:least-prime}
+ \sum_{2\le m\le n}\mu(m)a_{P^-(m)}
+ =-\sum_{p\le n}a_p R(n/p,p)=-\sum_{p\le n}a_p b_p(n),
+\end{equation}
+since $m=pd$ has $P^-(d)>p$ and $\mu(pd)=-\mu(d)$.
+Alladi~\cite{alladi1982} treats the unrestricted bounded-weight problem;
+here the support ceiling is part of the extremal question.
+
+\begin{theorem}\label{arith:sparse}
+For every fixed $\kappa>0$,
+\begin{equation}\label{arith:sparse-law}
+ F_\kappa(n)=n\exp\{-(g(\kappa)+o(1))s\},\qquad
+ g(\kappa)=
+ \begin{cases}
+ \sqrt2-\kappa,&0<\kappa\le1/\sqrt2,\\
+ 1/(2\kappa),&\kappa\ge1/\sqrt2.
+ \end{cases}
+\end{equation}
+\end{theorem}
+\begin{proof}
+If $K\le e^{\kappa s}$ weights are nonzero, H\"older's inequality and
+\eqref{arith:moment-law} imply, for each fixed $q>1$,
+\[
+ \left|\sum_pa_pb_p(n)\right|
+ \le K^{1-1/q}\left(\sum_p|b_p(n)|^q\right)^{1/q}
+ \le n\exp\{-(\sqrt{2\theta}-\kappa\theta-o(1))s\},
+ \qquad\theta=1-1/q.
+\]
+For $\kappa>1/\sqrt2$, choose the fixed
+$\theta=1/(2\kappa^2)\in(0,1)$ to obtain saving $1/(2\kappa)$.
+For $\kappa\le1/\sqrt2$, use directly $K\max_p|b_p(n)|$
+and \eqref{arith:maximum} to obtain saving $\sqrt2-\kappa$.
+This covers the common boundary without varying $q$.
+
+For the lower bound when $\kappa<1/\sqrt2$, take
+$\lfloor e^{\kappa s}\rfloor$ primes from
+$[e^{s/\sqrt2},2e^{s/\sqrt2}]$. The prime number theorem guarantees
+at least this many primes for all sufficiently large $n$.
+Equation \eqref{arith:block-law} gives each selected coefficient magnitude
+$n e^{-(\sqrt2+o(1))s}$. Choose $a_p$ to align their contributions
+in \eqref{arith:least-prime}; their sum gives the required lower bound.
+For $\kappa\ge1/\sqrt2$, take every prime in
+$[e^{\kappa s},2e^{\kappa s}]$. Their number is asymptotic to
+$e^{\kappa s}/(\kappa s)$, hence satisfies the support ceiling, and their
+total magnitude by \eqref{arith:block-law} is
+$n e^{-(1/(2\kappa)+o(1))s}$. This also proves the boundary case.
+In fact the coefficients in either block are eventually negative by
+Lemma~\ref{arith:bridge}, so indicator weights suffice for these lower
+constructions. The supremum assertion does not claim sharpness for every
+prescribed support.
+\end{proof}
+
+\begin{corollary}\label{arith:exceptional}
+Let $N_\lambda(n)=\#\{p\le n:|b_p(n)|\ge ne^{-\lambda s}\}$.
+For fixed $\lambda>\sqrt2$,
+\[
+ N_\lambda(n)=\exp\{(h(\lambda)+o(1))s\},\qquad
+ h(\lambda)=\frac{\lambda+\sqrt{\lambda^2-2}}2.
+\]
+For fixed $\lambda<\sqrt2$ the count is eventually zero.
+At $\lambda=\sqrt2$ we obtain only the upper bound
+$N_{\sqrt2}(n)\le\exp\{(1/\sqrt2+o(1))s\}$.
+\end{corollary}
+\begin{proof}
+Markov's inequality and \eqref{arith:moment-law} give, for fixed $q>1$,
+\[
+ N_\lambda(n)\le
+ \exp\{(q\lambda-\sqrt{2q(q-1)}+o(1))s\}.
+\]
+For $\lambda>\sqrt2$ the minimum is attained at
+$q=(1+\lambda/\sqrt{\lambda^2-2})/2$, and its value is $h(\lambda)$.
+For the reverse bound choose a fixed $c$ strictly between the two roots
+of $c+1/(2c)=\lambda$ and arbitrarily close to the larger root
+$h(\lambda)$. Every prime in $[e^{cs},2e^{cs}]$ meets the threshold
+eventually by \eqref{arith:block-law}, so the count is at least
+$e^{(c+o(1))s}$. Let $c$ increase to $h(\lambda)$ after taking the
+limit in $n$. The assertion for $\lambda<\sqrt2$ follows from
+\eqref{arith:maximum}. At equality the displayed Markov bound holds
+for each fixed $q$, and its cost decreases to $1/\sqrt2$ as
+$q\to\infty$. Taking the infimum after the limsup proves the stated
+upper bound; no uniform moment estimate or matching lower is asserted.
+\end{proof}
+
+\subsection{A weighted harmonic series on a thin prime support}
+
+\begin{theorem}\label{arith:thin-series}
+Fix $\kappa>0$ and a fixed set $\mathcal S$ of primes such that
+\[
+ N_{\mathcal S}(x):=\#(\mathcal S\cap[2,x])\le e^{\kappa s(x)}
+\]
+for every sufficiently large $x$. For fixed complex weights $|a_p|\le1$
+supported on $\mathcal S$, the series in increasing order of $m$ satisfies
+\begin{equation}\label{arith:series-value}
+ \sum_{m\ge2}\frac{\mu(m)a_{P^-(m)}}m=0,
+ \qquad
+ \left|\sum_{m>X}\frac{\mu(m)a_{P^-(m)}}m\right|
+ \le\exp\{-(g(\kappa)-o(1))s(X)\}.
+\end{equation}
+If $\log(N_{\mathcal S}(x)+1)=o(s(x))$, the tail bound holds with
+$g(\kappa)$ replaced by $\sqrt2$.
+\end{theorem}
+\begin{proof}
+Write $c_m=\mu(m)a_{P^-(m)}$ for $m\ge2$ and
+$T(x)=\sum_{2\le m\le x}c_m$.
+At every sufficiently large integer endpoint the support hypothesis and
+Theorem~\ref{arith:sparse} apply, and passage to real $x$ by flooring
+is harmless. For each fixed $0<\varepsilon<g(\kappa)/2$,
+\[
+ |T(x)|\le x e^{-(g(\kappa)-\varepsilon)s(x)}
+\]
+eventually. For every fixed $c>0$, substitution $v=\log t$ and then
+$z=\sqrt{v\log v}$ shows
+\begin{align*}
+ \int_X^\infty e^{-cs(t)}\frac{dt}{t}
+ &=\int_{\log X}^\infty e^{-c\sqrt{v\log v}}\,dv\\
+ &\le\int_{s(X)}^\infty 2z e^{-cz}\,dz
+ =O_c((s(X)+1)e^{-cs(X)}),
+\end{align*}
+using $dv/dz=2z/(\log v+1)\le2z$ eventually.
+Partial summation now proves convergence and bounds the tail by
+$|T(X)|/X+\int_X^\infty|T(t)|t^{-2}\,dt$.
+Absorbing the polynomial factor into an arbitrarily small exponential
+loss proves the tail bound in \eqref{arith:series-value}.
+
+Convergence alone does not identify the value. For real $\sigma>1$,
+absolute convergence allows grouping by the least prime and Euler products:
+\begin{equation}\label{arith:series-euler}
+ \sum_{m\ge2}\frac{c_m}{m^\sigma}
+ =-\frac1{\zeta(\sigma)}
+   \sum_{p\in\mathcal S}\frac{a_p}{p^\sigma}
+      \prod_{\substack{q\le p\\q\ \mathrm{prime}}}(1-q^{-\sigma})^{-1}.
+\end{equation}
+The support assumption implies $N_{\mathcal S}(x)\le x^{1/2}$
+eventually. Partial summation of this estimate gives
+$\sum_{p\in\mathcal S}\log(2p)/p<\infty$: the integral of
+$x^{1/2}\log(2x)/x^2$ converges, and its boundary term tends to zero.
+For $\sigma\ge1$, Mertens' product bound dominates the absolute value
+of the $p$-summand on the right of \eqref{arith:series-euler} by
+$C\log(2p)/p$. Thus the prime sum remains bounded as
+$\sigma\downarrow1$, whereas $1/\zeta(\sigma)\to0$.
+The Dirichlet-series limit is zero. Finally partial summation writes the
+left side as
+$\sigma\int_1^\infty T(t)t^{-\sigma-1}\,dt$.
+The bound already proved makes $|T(t)|/t^2$ integrable, so dominated
+convergence for $1<\sigma\le2$ identifies its limit with the convergent
+series at $\sigma=1$. Its value is therefore zero.
+
+Under the smaller-support assumption,
+\eqref{arith:least-prime} and \eqref{arith:maximum} directly give
+$|T(x)|\le x e^{-(\sqrt2-o(1))s(x)}$.
+The support still satisfies the preceding polynomial counting bound,
+and the identical integral and Dirichlet-series arguments yield the
+last assertion.
+\end{proof}
+
+The theorem concerns the naturally ordered series, not absolute convergence
+of its terms, and supplies no explicit numerical onset. The unweighted
+zero-value assertion for a prime set of density zero is already contained in
+the density formula of Kural--McDonald--Sah~\cite[Theorem~1.1]{kms}.
+The formulation here records a quantitative tail for fixed thin supports
+and bounded complex weights; it does not assert that this rate has no prior
+occurrence in the literature.

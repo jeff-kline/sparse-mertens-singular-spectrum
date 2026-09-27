@@ -1,0 +1,2 @@
+# No third-party Python dependencies. The draft checker uses only the standard library.
+# Tested isolated interpreter: Python 3.12.14.
