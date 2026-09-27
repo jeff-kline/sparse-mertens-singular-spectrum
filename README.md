@@ -55,11 +55,13 @@ paper shows the two side by side.
 
 ## Main results
 
-Singular values are listed in decreasing order, σ₁ ≥ … ≥ σₙ. Let `k_n` be the
+The singular values of a matrix measure how much it stretches vectors in
+different directions; their product is the absolute value of the
+determinant. They are listed in decreasing order, σ₁ ≥ … ≥ σₙ. Let `k_n` be the
 number of integers up to n that have at least one child in the tree.
 
-1. **Almost all singular values equal one.** Exactly `n − 2k_n − 1` of them
-   do, and `k_n = O(n/(log n)^H)` for every fixed H.
+1. **Almost all singular values equal one.** For n ≥ 4, exactly
+   `n − 2k_n − 1` of them do, and `k_n = O(n/(log n)^H)` for every fixed H.
 2. **The upper singular values follow the parent degrees.** Apart from
    σ₁ ~ √n, each is within 3 of the square root of a parent's number of
    children. For fixed r, σ_{r+1} is asymptotic to `√(n / (a_r log n))`,
@@ -171,8 +173,9 @@ Redheffer comparison figure is exact vector source; regenerate it with
 - `scripts/check_paper.py`: document consistency checker.
 - `audit/`: prior-art comparisons, proof reviews, and their dispositions;
   `audit/drafting/` keeps the records from the drafting stage.
-- `ADMISSION.md`, `CORRECTIONS.md`, `CITATION.cff`, `MANIFEST.sha256`: release
-  records.
+- `ADMISSION.md`, `VERIFICATION.md`, `CORRECTIONS.md`, `CITATION.cff`,
+  `MANIFEST.sha256`: release records. `audit/LEDGER.md` lists every audit
+  finding and its disposition.
 
 ## Role of AI
 

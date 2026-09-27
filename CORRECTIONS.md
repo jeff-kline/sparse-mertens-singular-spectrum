@@ -38,3 +38,8 @@ Open Problem 1 (the shape of the inverse-vector norm) is resolved here.
 - Release preparation began 2026-09-27 from a drafting snapshot whose reading
   copy had SHA-256 `6d081a7476e8d2abacf83edbbd0db80395daaba3c69dc1e2bce68fed5d1a62da`.
 - The candidate has no active DOI or permanent archive yet.
+- Prepublication changes made during release preparation, before any tag:
+  the relation to the earlier release was stated and its citation corrected
+  from “working manuscript” to the archived version; attribution to Alladi
+  (1977, 1982), Kline (LAA 588), and Tenenbaum (1990) was added; one sentence
+  in Section 5 was reworded for accuracy. No theorem statement changed.

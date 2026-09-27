@@ -14,7 +14,7 @@ abstract: >-
   (0,1) matrix whose determinant is the Mertens function: the exact number
   equal to one, the upper values through parent degrees, fixed-index lower
   limits through an explicit compact operator, and an unconditional asymptotic
-  equivalent for the smallest singular value in terms of the Mertens sum and
+  equivalent, whenever the Mertens sum is nonzero, for the smallest singular value in terms of the Mertens sum and
   the norm of a vector of restricted Moebius sums. No improved bound for the
   Mertens function is claimed.
 keywords:
