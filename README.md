@@ -11,9 +11,24 @@ correctness certificate.
 The paper is [paper/main.pdf](paper/main.pdf); its source is
 [paper/main.tex](paper/main.tex).
 
-## The matrix
+## Introduction
 
-This paper studies a matrix built from simple parent links between integers. A
+The Mertens function `M(n) = μ(1) + μ(2) + ... + μ(n)` adds up the Möbius
+function μ. That function is 0 at integers with a repeated prime factor, and
+otherwise +1 or −1 as the number of prime factors is even or odd. How fast
+`M(n)` can grow is a central question in number theory: `M(n) = o(n)` is
+equivalent to the prime number theorem, and `M(n) = O(n^(1/2+ε))` for every
+ε > 0 is equivalent to the Riemann hypothesis.
+
+In 1977 Redheffer found a matrix of zeros and ones whose determinant is
+`M(n)`. That turns a question about a sum into a question about a matrix. The
+singular values of a matrix measure how much it stretches vectors in different
+directions, and their product is the absolute value of the determinant. So one
+can ask which singular values carry the size of `M(n)`. Redheffer's matrix has
+about `n log n` nonzero entries. Kline (2019) found a much sparser matrix with
+the same determinant, about `2.61n` nonzero entries, and this paper studies it.
+
+The sparse matrix is built from simple parent links between integers. A
 squarefree integer has no repeated prime factor. Its parent is obtained by
 removing its largest prime factor. For example, among the integers from 1 to 6,
 the links are:
@@ -42,22 +57,17 @@ arrow j → i. Then replace the first row by ones. With rows and columns ordered
     └             ┘
 ```
 
-Call the n × n version `B_n`. It was introduced by Kline (2019), where it is
-written as a calligraphic R. Its determinant is the Mertens function:
+Call the n × n version `B_n`; Kline (2019) writes it as a calligraphic R. Its
+determinant is `M(n)`. At n = 120 it has 313 nonzero entries against 721 for
+Redheffer's matrix, and the paper shows the two side by side.
 
-```text
-det B_n = M(n) = μ(1) + μ(2) + ... + μ(n),
-```
-
-where μ is the Möbius function. Redheffer's classical matrix has the same
-determinant but many more nonzero entries: at n = 120, 721 against 313. The
-paper shows the two side by side.
+The paper describes all of the singular values of `B_n`. Almost all of them
+equal one; the large ones are set by counting primes; the small ones have fixed
+limits. Only the smallest one carries `M(n)`.
 
 ## Main results
 
-The singular values of a matrix measure how much it stretches vectors in
-different directions; their product is the absolute value of the
-determinant. They are listed in decreasing order, σ₁ ≥ … ≥ σₙ. Let `k_n` be the
+Singular values are listed in decreasing order, σ₁ ≥ … ≥ σₙ. Let `k_n` be the
 number of integers up to n that have at least one child in the tree.
 
 1. **Almost all singular values equal one.** For n ≥ 4, exactly
@@ -112,6 +122,10 @@ value. Items 1–3, the products, and the geometric results do not appear there.
 
 Other credit:
 
+- **Redheffer (1977)** introduced the classical matrix with determinant
+  `M(n)`: R. Redheffer, *Eine explizit lösbare Optimierungsaufgabe*, in
+  Numerische Methoden bei Optimierungsaufgaben, Band 3, Birkhäuser, 1977,
+  213–216.
 - **Hilberdink (2017)** developed compact Gram limits for arithmetic
   (multiplicative Toeplitz) matrices. The general method and the idea of a
   fixed lower-spectrum limit are his. The contribution here is the explicit
