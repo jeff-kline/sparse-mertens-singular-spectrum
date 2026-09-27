@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: "Please cite Version 0.1.0 of this research repository."
+title: "The singular spectrum of a sparse Mertens matrix"
+type: software
+version: 0.1.0
+authors:
+  - family-names: Kline
+    given-names: Jeffery
+repository-code: "https://github.com/jeff-kline/sparse-mertens-singular-spectrum"
+url: "https://github.com/jeff-kline/sparse-mertens-singular-spectrum"
+license: GPL-3.0-only
+abstract: >-
+  A paper and release repository describing the singular values of a sparse
+  (0,1) matrix whose determinant is the Mertens function: the exact number
+  equal to one, the upper values through parent degrees, fixed-index lower
+  limits through an explicit compact operator, and an unconditional asymptotic
+  equivalent for the smallest singular value in terms of the Mertens sum and
+  the norm of a vector of restricted Moebius sums. No improved bound for the
+  Mertens function is claimed.
+keywords:
+  - Mertens function
+  - singular values
+  - Redheffer matrix
+  - Moebius function
+  - compact operator
+  - Dickman function
+references:
+  - type: software
+    title: "The smallest singular value of a sparse Mertens matrix"
+    version: 0.1.0
+    doi: 10.5281/zenodo.21774716
+    authors:
+      - family-names: Kline
+        given-names: Jeffery

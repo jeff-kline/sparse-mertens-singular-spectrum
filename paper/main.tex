@@ -4,7 +4,7 @@
 \usepackage{booktabs,longtable,array}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
-\hypersetup{pdftitle={The singular spectrum of a sparse Mertens matrix},pdfauthor={Jeffery Kline},pdfsubject={Quarantined rough draft, September 27, 2026}}
+\hypersetup{pdftitle={The singular spectrum of a sparse Mertens matrix},pdfauthor={Jeffery Kline},pdfsubject={Release candidate, version 0.1.0}}
 \usepackage[expansion=false]{microtype}
 \numberwithin{equation}{section}
 \newtheorem{theorem}{Theorem}[section]
@@ -27,11 +27,16 @@
 \DeclareMathOperator{\dist}{dist}
 \title{The singular spectrum of a sparse Mertens matrix}
 \author{Jeffery Kline}
-\date{September 27, 2026\\[3pt]\small Quarantined rough draft --- not a public release}
+\date{September 27, 2026\\[3pt]\small Version 0.1.0 (release candidate)}
 \begin{document}
 \maketitle
 \begin{abstract}
-We study the $n\times n$ matrix $B_n$ formed by placing ones on the diagonal and at $(i,i/P^+(i))$ for squarefree $i>1$, then replacing the first row by ones; all other entries are zero. Here $P^+(i)$ is the largest prime factor of $i$. Introduced by Kline (2019), this matrix satisfies $\det B_n=M(n)=\sum_{k\le n}\mu(k)$, where $\mu$ is the M\"obius function. We determine the multiplicity of the singular value one, compare upper singular values with square roots of parent degrees, and derive fixed-index lower limits from an explicit compact operator, including at singular matrices. The exceptional smallest singular value depends on $M(n)$ and the norm of a vector of restricted M\"obius sums. Classical estimates yield this norm's leading exponential scale, fixed-order moments, support-constrained sums, and singular-value products. Component projections give a geometric residual and a Dickman--Buchstab limit profile. The contribution considered here is an explicit limiting operator determined by the parent tree, a separation of the exceptional singular direction, and exact information about the remaining singular values. The compact-Gram method has prior arithmetic applications. Arithmetic priority remains subject to further comparison. No stronger estimate for Mertens sums or prime counting is obtained.
+We study the $n\times n$ matrix $B_n$ formed by placing ones on the diagonal and at $(i,i/P^+(i))$ for squarefree $i>1$, then replacing the first row by ones; all other entries are zero. Here $P^+(i)$ is the largest prime factor of $i$. Introduced by Kline (2019), this matrix satisfies $\det B_n=M(n)=\sum_{k\le n}\mu(k)$, where $\mu$ is the M\"obius function. We determine the multiplicity of the singular value one, compare upper singular values with square roots of parent degrees, and derive fixed-index lower limits from an explicit compact operator, including at singular matrices. The smallest singular value is exceptional: whenever $M(n)\ne0$,
+\[
+ \sigma_n(B_n)\sim\frac{|M(n)|}{\sqrt{Q(n)}\,W_n},\qquad
+ W_n=n\exp\bigl(-(1+o(1))\sqrt{\log n\log\log n}\bigr),
+\]
+where $Q(n)$ counts the squarefree integers up to $n$ and $W_n$ is the norm of a vector of restricted M\"obius sums. This holds unconditionally. An earlier release by the author bounded $\sigma_n(B_n)$ between $|M(n)|n^{-3/2+o(1)}$ and $|M(n)|n^{-4/3+o(1)}$, and proved that it attains the lower end under a hypothesis implied by the Riemann hypothesis. We show that this hypothesis always holds. Classical estimates also give fixed-order moments and support-constrained sums of the restricted M\"obius sums, and products of singular values. Component projections give a geometric residual and a Dickman--Buchstab limit profile. The compact-Gram method and the restricted sums have prior arithmetic uses, and arithmetic priority for the moment formulations is not established. No stronger estimate for Mertens sums or prime counting is obtained: the formula for $\sigma_n(B_n)$ contains $M(n)$ and does not bound it.
 \end{abstract}
 \tableofcontents
 \input{sections/introduction}

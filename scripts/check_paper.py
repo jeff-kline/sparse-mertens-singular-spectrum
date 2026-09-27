@@ -34,7 +34,7 @@ pages = int(re.search(r"Pages:\s+(\d+)", info).group(1))
 pdftext = subprocess.check_output(["pdftotext", str(paper / "main.pdf"), "-"], text=True)
 if "??" in pdftext:
     errors.append("unresolved ?? in PDF text")
-if "Jeffery Kline" not in pdftext or "Quarantined rough draft" not in pdftext:
+if "Jeffery Kline" not in pdftext or "Version 0.1.0" not in pdftext:
     errors.append("missing title-page identity/status")
 result = {"status": "FAIL" if errors else "PASS", "pages": pages,
           "source_files": len(files), "labels": len(labels), "references": len(refs),
