@@ -115,12 +115,15 @@ Other credit:
   fixed lower-spectrum limit are his. The contribution here is the explicit
   kernel for this parent tree, the deflation for the bordered matrix, and the
   exact unit and degree results.
-- **Alladi (1982)** studied the restricted Möbius sums and proved their
-  asymptotic when the ratio `log x / log y` is fixed; he also studied the
-  bounded least-prime weighted extremum. The estimate for `W_n` needs these
-  sums where that ratio grows. There it uses the classical Mertens bound and a
-  two-term smooth-number expansion due to de Bruijn and Saias, in the form
-  stated by McNew (2017).
+- **Alladi (1982)** studied the restricted Möbius sums and the bounded
+  least-prime weighted extremum. His asymptotic for the sums holds as a
+  relative estimate only while `u = log x / log y` stays below about
+  `(log x)^(1/3)`. The estimate for `W_n` needs `u` near
+  `(log n / log log n)^(1/2)`, where the paper proves the relative asymptotic
+  from the classical Mertens bound and a two-term smooth-number expansion of
+  de Bruijn and Saias, in the form stated by McNew (2017). Alladi's companion
+  paper (Trans. AMS, 1982) and a related 1990 paper of Tenenbaum could not be
+  read, so priority for this step is not established.
 - **Kline (2019, 2020)** introduced the matrix, found its dominant
   eigenvalues, and proved the bordered-matrix identity behind the geometric
   base volume.
