@@ -115,3 +115,14 @@ review.
 |---|---|---|
 | Alladi 1977 credited only in the introduction, not beside the thin-series theorem | optional | **Fixed** in Section 3.7 |
 | Kural–McDonald–Sah entry lacks the published DOI | optional | **Fixed**; DOI 10.1007/s00013-020-01458-z confirmed through Crossref |
+
+## 2026-09-27 — Checker regression after the README image (R1)
+
+- Found by the root agent while preparing a review handoff.
+- Commits `2df29bb` and `bae43fb` (README only) were pushed after the release
+  audit but without rerunning `make check`. The new file
+  `paper/figures/redheffer-comparison-standalone.tex`, which renders the README
+  image, was picked up by the checker and its `\input` failed to resolve.
+- **Fixed**: the checker now skips `*-standalone.tex` wrappers. `make check`
+  passes with the recorded counts (39 pages, 11 source files, 121 labels).
+  The paper and its PDF were not affected.

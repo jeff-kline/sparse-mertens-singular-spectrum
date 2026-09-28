@@ -9,7 +9,9 @@ import sys
 assert sys.prefix != sys.base_prefix, "Use the project isolated .venv interpreter"
 root = Path(__file__).resolve().parents[1]
 paper = root / "paper"
-files = [paper / "main.tex", *sorted(p for p in paper.rglob("*.tex") if p != paper / "main.tex")]
+# The standalone wrapper only renders the README image; it is not part of the paper.
+files = [paper / "main.tex", *sorted(p for p in paper.rglob("*.tex")
+                                    if p != paper / "main.tex" and not p.name.endswith("-standalone.tex"))]
 text = "\n".join(p.read_text() for p in files)
 labels = re.findall(r"\\label\{([^}]+)\}", text)
 refs = re.findall(r"\\(?:eqref|ref)\{([^}]+)\}", text)
