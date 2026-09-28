@@ -9,6 +9,15 @@ authors:
 repository-code: "https://github.com/jeff-kline/sparse-mertens-singular-spectrum"
 url: "https://github.com/jeff-kline/sparse-mertens-singular-spectrum"
 license: GPL-3.0-only
+doi: 10.5281/zenodo.23004980
+date-released: 2026-09-28
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.23004980
+    description: "Version DOI for release 0.1.0"
+  - type: doi
+    value: 10.5281/zenodo.23004979
+    description: "Concept DOI; resolves to the latest version"
 abstract: >-
   A paper and release repository describing the singular values of a sparse
   (0,1) matrix whose determinant is the Mertens function: the exact number

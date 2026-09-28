@@ -33,11 +33,19 @@ Open Problem 1 (the shape of the inverse-vector norm) is resolved here.
 
 ## Version history
 
-### 0.1.0 — release candidate
+### 0.1.0 — released 2026-09-28
+
+- Tag `v0.1.0` at commit `6552b72`; version DOI
+  [`10.5281/zenodo.23004980`](https://doi.org/10.5281/zenodo.23004980), concept DOI `10.5281/zenodo.23004979`.
+- The tagged snapshot retains its prepublication “release candidate” wording
+  and carries no DOI, because the DOI was minted by Zenodo after the GitHub
+  Release. The living repository and paper now carry the active DOI; the
+  archived files were not changed.
+
+#### Release preparation, before the tag
 
 - Release preparation began 2026-09-27 from a drafting snapshot whose reading
   copy had SHA-256 `6d081a7476e8d2abacf83edbbd0db80395daaba3c69dc1e2bce68fed5d1a62da`.
-- The candidate has no active DOI or permanent archive yet.
 - Prepublication changes made during release preparation, before any tag:
   the relation to the earlier release was stated and its citation corrected
   from “working manuscript” to the archived version; attribution to Alladi

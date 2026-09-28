@@ -2,11 +2,17 @@
 
 Jeffery Kline
 
-**Version 0.1.0 — release candidate, not yet archived.** No DOI exists for
-this version yet. It is prepared for release under the project's
-[public research standard](https://jeff-kline.github.io/posts/research-program/index.html).
-Admission under that standard is a release decision, not peer review or a
-correctness certificate.
+[![Version DOI: 10.5281/zenodo.23004980](https://zenodo.org/badge/DOI/10.5281/zenodo.23004980.svg)](https://doi.org/10.5281/zenodo.23004980)
+
+**Version 0.1.0 — admitted, released 2026-09-28.** The immutable release is
+[`v0.1.0`](https://github.com/jeff-kline/sparse-mertens-singular-spectrum/releases/tag/v0.1.0),
+archived at version DOI [`10.5281/zenodo.23004980`](https://doi.org/10.5281/zenodo.23004980). The concept DOI
+[`10.5281/zenodo.23004979`](https://doi.org/10.5281/zenodo.23004979) resolves to the latest version; cite the
+version DOI for reproducibility. Admission under the project's
+[public research standard](https://jeff-kline.github.io/posts/research-program/index.html)
+is a release decision, not peer review or a correctness certificate. The
+tagged snapshot retains its prepublication “release candidate” wording because
+the DOI did not exist when it was made.
 
 The paper is [paper/main.pdf](paper/main.pdf); its source is
 [paper/main.tex](paper/main.tex).

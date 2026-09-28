@@ -1,14 +1,16 @@
 # Admission record
 
-**Current state:** CANDIDATE
+**Current state:** ADMITTED
 
 **Version:** 0.1.0
 
-**Planned tag:** `v0.1.0`
+**Tag:** `v0.1.0` → `6552b72c51dfc88014711658063d76a252694d04`
 
 **Standard:** [A Public Standard for This Work](https://jeff-kline.github.io/posts/research-program/index.html), draft 0.4, 2026-08-01
 
-**Admission verdict:** NOT YET ADMITTED
+Current verdict: ADMITTED (2026-09-28)
+
+**Version DOI:** [`10.5281/zenodo.23004980`](https://doi.org/10.5281/zenodo.23004980) · **Concept DOI:** `10.5281/zenodo.23004979` · **Record:** <https://zenodo.org/records/23004980>
 
 Admission is a project release decision. It is not peer review, a correctness
 certificate, or proof of global novelty.
@@ -66,12 +68,12 @@ hypothesis is claimed.
 | Hygiene: credentials, private paths, placeholders | PASS | Local account and session paths in audit reports redacted 2026-09-27; tracked-tree rescan found none |
 | Correction, withdrawal, supersession policy | PASS | `CORRECTIONS.md` |
 | Machine-readable citation | PASS | `CITATION.cff`, candidate-safe: no DOI, no release date |
-| Immutable semantic tag | FAIL | Not authorized or created |
-| Public permanent archive with provider byte identity | FAIL | Not created |
-| DOI resolves; living repository identifies the version | FAIL | No DOI yet |
-| Archive metadata matches repository | FAIL | No archive yet |
+| Immutable semantic tag | PASS | Annotated `v0.1.0` (object `9d2b521`) → `6552b72`; tagger is the GitHub noreply identity |
+| Public permanent archive with provider byte identity | PASS | Two pinned GitHub `zipball/v0.1.0` downloads and two Zenodo downloads are byte-identical: 711,753 bytes, SHA-256 `9bedd6f84b2c126843af8e442ae5f075847912686072ff92d739fc494dcbafe3`; Zenodo MD5 `5e8b6653978dc06d505dc0e0fe401ded` |
+| DOI resolves; living repository identifies the version | PASS | `doi.org/10.5281/zenodo.23004980` redirects to the Zenodo record; README, `CITATION.cff`, and the living paper carry the version DOI |
+| Archive metadata matches repository | PASS | Title, creator Kline, Jeffery, version v0.1.0, publication date 2026-09-28, license `gpl-3.0-only` (GNU GPL v3.0 only), resource type software, related identifier the `v0.1.0` tree |
 
-**R1 gate:** open until tagging and archiving are authorized and verified.
+**R1 gate:** PASS.
 
 ## External actions
 
@@ -81,7 +83,28 @@ hypothesis is claimed.
 | Make the repository public; enable secret scanning and push protection | Author authorization | done 2026-09-27 |
 | Annotated tag `v0.1.0`, push, GitHub Release | Author authorization (freeze bundle) | authorized 2026-09-27 |
 | Enable the repository in Zenodo before the Release | Author, in the Zenodo portal | done 2026-09-27; Zenodo release webhook present |
-| Public-site listing and living-metadata update | Author authorization (admission bundle) | pending |
+| Living-metadata update (this commit) | Author authorization (admission bundle) | done 2026-09-28, pushed after the site listing was verified live |
+| Public-site listing | Author authorization (admission bundle) | done 2026-09-28: landing entry at <https://jeff-kline.github.io/> (site commit `da0d5da`), Pages build and live HTML checked for title, blurb, repository link, and version DOI |
+
+## Archive verification
+
+- Route: Zenodo GitHub integration; no manual deposit.
+- Pinned before the GitHub Release: GitHub API `zipball/v0.1.0`, downloaded
+  twice, identical, 711,753 bytes, SHA-256 `9bedd6f84b2c126843af8e442ae5f075847912686072ff92d739fc494dcbafe3`.
+- Zenodo file `sparse-mertens-singular-spectrum-v0.1.0.zip`, downloaded twice:
+  identical to the pinned zipball.
+- Separate determinism check: `git archive --format=zip
+  --prefix=sparse-mertens-singular-spectrum-v0.1.0/ v0.1.0`, generated twice,
+  identical, 710,337 bytes, SHA-256 `493a74b204383f78706eaed0f8e4a36cbe4ec4423c22c6fd7c6021b82624afcd`. This is a different file from
+  the provider zipball and is not compared with it.
+- Mechanical audit at the archived state, on the unchanged tagged tree:
+  12 pass, 0 warnings, 0 fail.
+- Tagged commit reproduced from a clean `git archive` extraction: PDF SHA-256
+  `bf477dddf4d5d65ad5f26be42f2de4c4e37dda3dabe20b5f5a34152fb420b915`,
+  `make check` PASS, 50 manifest entries OK.
+- The tagged tree keeps its “release candidate” wording and has no DOI. The
+  living paper was rebuilt with the DOI on its title page, so the living PDF
+  differs from the archived one.
 
 ## Archive route
 

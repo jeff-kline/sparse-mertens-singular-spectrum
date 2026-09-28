@@ -1,4 +1,4 @@
-# Verification record — version 0.1.0 candidate
+# Verification record — version 0.1.0
 
 Recorded 2026-09-27.
 
@@ -59,11 +59,19 @@ missing inputs, placeholder markers, TeX errors, overfull boxes, undefined or
 multiply defined references, rerun warnings, unresolved `??` in the PDF text,
 and a missing title-page author or version line.
 
-Reading copy:
+Reading copy in the archived release (tag `v0.1.0`):
 
 ```text
 paper/main.pdf  39 pages
 SHA-256 bf477dddf4d5d65ad5f26be42f2de4c4e37dda3dabe20b5f5a34152fb420b915
+```
+
+Living copy, rebuilt after archiving with the version DOI on its title page
+(the only source change is the title-page status line and PDF subject):
+
+```text
+paper/main.pdf  39 pages
+SHA-256 2006c7af025ef10a9231c32d188072eaf212059636d1f59d435bedd85df5846f
 ```
 
 This hash was reproduced from a fresh `git archive HEAD` extraction with a
