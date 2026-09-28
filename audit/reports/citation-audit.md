@@ -189,7 +189,7 @@ not a citation defect.
 ## 5. Task 3: accuracy of `introduction.tex`'s claims about `klineSmallest`
 
 Read in full:
-`/Users/klinellc/Documents/sparse-mertens-singular-values_release/paper/sparse-mertens-singular-values.tex`.
+`sparse-mertens-singular-values v0.1.0, `paper/sparse-mertens-singular-values.tex` (local absolute path redacted)`.
 
 `introduction.tex:65–69` attributes to `klineSmallest`: (a) the triangular inverse; (b) the expression
 of $w_n$ by restricted Möbius sums; (c) the rank-one inverse formula; (d) $\sigma_1(B_n)=\sqrt

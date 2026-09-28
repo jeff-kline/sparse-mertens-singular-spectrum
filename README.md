@@ -14,7 +14,7 @@ The paper is [paper/main.pdf](paper/main.pdf); its source is
 ## Introduction
 
 This paper studies the n × n matrix `B_n` formed by placing ones on the
-diagonal and at `(i, i/P⁺(i))` for each squarefree `i > 1`, then replacing the
+diagonal and at `(i, i/P⁺(i))` for each squarefree `i > 1` (no prime square divides `i`), then replacing the
 first row by ones; all other entries are zero. Here `P⁺(i)` is the largest
 prime factor of `i`, and `i/P⁺(i)` is called the parent of `i`; these parent
 links form a tree on the squarefree integers. The matrix was introduced by
@@ -44,7 +44,8 @@ counting follows.
 
 ## Main results
 
-Singular values are listed in decreasing order, σ₁ ≥ … ≥ σₙ. Let `k_n` be the
+The singular values of `B_n` are the square roots of the eigenvalues of
+`B_nᵀB_n`, listed in decreasing order, σ₁ ≥ … ≥ σₙ. Let `k_n` be the
 number of integers up to n that have at least one child in the tree.
 
 1. **Almost all singular values equal one.** For n ≥ 4, exactly
@@ -53,9 +54,10 @@ number of integers up to n that have at least one child in the tree.
    σ₁ ~ √n, each is within 3 of the square root of a parent's number of
    children. For fixed r, σ_{r+1} is asymptotic to `√(n / (a_r log n))`,
    where `a_r` is the r-th squarefree integer.
-3. **The lower singular values have an explicit limit.** For each fixed r,
-   `√n · σ_{n−r}` converges to `λ_r(L)^(−1/2)`, where L is an explicit
-   compact operator built from the tree. This holds for every n, including
+3. **The lower singular values have an explicit limit.** For each fixed
+   r ≥ 1, `√n · σ_{n−r}` converges to `λ_r(L)^(−1/2)`, where `λ_r(L)` is the
+   r-th largest positive eigenvalue of an explicit compact operator L built
+   from the tree. The limit runs through all positive integers n, including
    those where `M(n) = 0` and the matrix is singular.
 4. **The smallest singular value carries the Mertens sum.** Whenever
    `M(n) ≠ 0`,
@@ -89,12 +91,13 @@ The closest earlier work is the author's own release
 |M(n)| n^(−3/2+o(1))  ≤  σ_n(B_n)  ≤  |M(n)| n^(−4/3+o(1)),
 ```
 
-obtained the lower scale as an equivalent only under a hypothesis implied by
-the Riemann hypothesis, and posed the shape of `W_n` in item 4 as an open
-problem. This paper proves that shape. The hypothesis then holds
-unconditionally, and the bracket becomes an asymptotic equivalent. The paper
-also replaces the earlier `‖A_n⁻¹‖ = n^(1/2+o(1))` by an exact limiting
-constant. The earlier release has the sharper estimate for the largest singular
+obtained the lower scale as an equivalent only under a rank-one dominance
+condition implied by the Riemann hypothesis, and posed the shape of `W_n` in
+item 4 as an open problem. This paper proves that shape. The dominance
+condition then always holds, and the bracket becomes an asymptotic equivalent
+without any hypothesis. The paper also replaces the earlier estimate
+`‖A_n⁻¹‖ = n^(1/2+o(1))`, for the triangular matrix `A_n` (that is, `B_n`
+before its first row is replaced), by an exact limiting constant. The earlier release has the sharper estimate for the largest singular
 value. Items 1–3, the products, and the geometric results do not appear there.
 
 Other credit:
@@ -136,8 +139,8 @@ arithmetic moment and support-constrained formulations is not established.
 - The proofs were checked by process-separated AI audits. No independent human
   expert has reviewed them. Agreement among AI checks is evidence about a
   process, not independent validation.
-- Limiting constants such as `‖K‖` and `λ_r(L)` are defined exactly but not
-  evaluated numerically; certified values would need rigorous truncation
+- Limiting constants, such as the limit of `‖A_n⁻¹‖/√n` and the `λ_r(L)`,
+  are defined exactly but not evaluated numerically; certified values would need rigorous truncation
   bounds.
 
 ## Reproduce
@@ -148,7 +151,7 @@ from an isolated environment:
 
 ```sh
 python3 -m venv .venv            # any Python 3.10+ interpreter
-make paper                        # builds paper/main.pdf; fixed SOURCE_DATE_EPOCH
+make paper                        # four pdfLaTeX passes; fixed SOURCE_DATE_EPOCH
 make check                        # labels, citations, TeX log, and PDF text
 shasum -a 256 -c MANIFEST.sha256
 ```

@@ -1,5 +1,18 @@
 # Alladi source extraction — bibliographic research report
 
+> **Erratum, 2026-09-27** (added after the independent review; the original
+> report below is preserved as history). Throughout the saddle-range
+> comparison, the target is `u ≍ √(log x / log log x)`, while
+> `log y ≍ √(log x · log log x)`. The Dirichlet series in the discussion of
+> Theorem 2 has summand `μ(n)/n^s`. Alladi's equation (1.3) is
+> `A(x) = Σ_{p≤x} |M(x/p, p)|`, with no factor `1/p`. These corrections do not
+> alter the comparison with (2.16). The tentative interpretation of
+> arXiv:2601.10636 in Target 4 is superseded by the source-based disposition in
+> `audit/LEDGER.md`: at `k = 1` its Theorem 1.1 has an empty main term and
+> gives only an upper bound for `M(x,y)`. Local file paths in this report were
+> redacted; public retrieval URLs are kept.
+
+
 Prepared: 2026-09-27. Read-only bibliographic research; no repository files other than this one were touched.
 
 Notation used throughout (matches task): `p(n)` = smallest ("least") prime factor of `n`, with `p(1)=∞`; `P(n)` = largest prime factor; `M(x,y) = Σ_{n≤x, p(n)>y} μ(n)`; `Ψ(x,y) = #{n≤x : P(n)≤y}`; `ρ` = Dickman's function; `α` (Alladi's notation) `= u` (task's notation) `= log x/log y`.
@@ -12,7 +25,7 @@ Notation used throughout (matches task): `p(n)` = smallest ("least") prime facto
 
 - ScienceDirect PDF (`sciencedirect.com/science/article/pii/0022314X82900609/pdf`): blocked, HTTP 403 (Cloudflare challenge), as anticipated.
 - Deep Blue (`hdl.handle.net/2027.42/24065`): not fetched directly (anticipated 403 per task brief); however its **content was retrieved via a CORE.ac.uk mirror**.
-- **Working route:** `api.core.ac.uk/v3/search/works?q=...` (CORE aggregator) returned a metadata record (CORE id 3088217, mirroring Deep Blue oai:deepblue.lib.umich.edu:2027.42/24065) with a working `downloadUrl`: `https://core.ac.uk/download/3088217.pdf` — HTTP 200, 13-page PDF, 469 KB. Saved to `/private/tmp/claude-501/.../scratchpad/alladi/jnt1982.pdf`.
+- **Working route:** `api.core.ac.uk/v3/search/works?q=...` (CORE aggregator) returned a metadata record (CORE id 3088217, mirroring Deep Blue oai:deepblue.lib.umich.edu:2027.42/24065) with a working `downloadUrl`: `https://core.ac.uk/download/3088217.pdf` — HTTP 200, 13-page PDF, 469 KB. Saved to `local scratch copy `jnt1982.pdf` (path redacted)`.
 - Text extracted with `pdftotext -layout` (garbled Möbius-µ/summation glyphs from OCR) and cross-checked by rendering pages 1–6 at 200dpi (`pdftoppm`) and reading them as images for exact transcription of all displayed equations below. High confidence in the verbatim quotes that follow (visually verified against the page images).
 
 ### Verbatim abstract (p. 86, via CORE metadata, matches PDF)
@@ -133,7 +146,7 @@ which **reduces to Alladi's plain M(x,y) exactly at k=1** (the paper proves this
 **Interpretation for the key question (my own calculation, not the paper's stated conclusion in these terms):**
 - Converting the hypothesis to `u = log x/log y`: the range `y ≤ Y₀ exp(p log x/(log log x)^{1+ε})` together with `y ≥ 1.9` covers `u` from about `(log log x)^{1+ε}` up to about `log x` — i.e. this range **comfortably contains** `u ≍ √(log x·log log x)`.
 - At `y` such that `log y ≍ √(log x log log x)` (i.e. `u ≍ √(log x/log log x)`), the stated error bound's two pieces both vanish faster than any fixed power of `log x` relative to the leading term `x/log x`: `(log y/log x)^{N+1} = (√(log log x/log x))^{N+1} → 0` for any fixed `N` as `x→∞`, and the `exp(−c''√(log y))` term is super-polynomially small. **This would make it a genuine RELATIVE (error-beaten) asymptotic in exactly the target range** — in contrast to Alladi's own 1982 Theorem 1, which is only additive there.
-- **Caveat — I could not obtain unambiguous ground-truth LaTeX for the error-term formula.** Both `pdftotext -layout` (which loses stacked-fraction bars, printing numerator and denominator on separate lines) and the WebFetch tool's HTML extraction (which itself paraphrases through a small model rather than returning raw source) gave mutually consistent but not literally verbatim renderings; I resolved the `log x / (log log(x+1))^{1+ε}` fraction placement by cross-checking against a clearly-parenthesized footnote elsewhere in the same paper (footnote 6: `e^{(log x)^{1-ε'}} < exp(p·log x/(log log(x+1))^{1+ε}) < x`, which only makes sense with division), but the exact exponent structure of the *error term* (the `N+1` power and the constant `c''`) should be checked against the arXiv source/PDF directly before being relied on for a priority argument. Local copy: `/private/tmp/claude-501/.../scratchpad/alladi/2601.10636.pdf` (arXiv v2, 416 KB) and its `pdftotext -layout` extraction `2601.10636.txt`.
+- **Caveat — I could not obtain unambiguous ground-truth LaTeX for the error-term formula.** Both `pdftotext -layout` (which loses stacked-fraction bars, printing numerator and denominator on separate lines) and the WebFetch tool's HTML extraction (which itself paraphrases through a small model rather than returning raw source) gave mutually consistent but not literally verbatim renderings; I resolved the `log x / (log log(x+1))^{1+ε}` fraction placement by cross-checking against a clearly-parenthesized footnote elsewhere in the same paper (footnote 6: `e^{(log x)^{1-ε'}} < exp(p·log x/(log log(x+1))^{1+ε}) < x`, which only makes sense with division), but the exact exponent structure of the *error term* (the `N+1` power and the constant `c''`) should be checked against the arXiv source/PDF directly before being relied on for a priority argument. Local copy: `local scratch copy `2601.10636.pdf` (path redacted)` (arXiv v2, 416 KB) and its `pdftotext -layout` extraction `2601.10636.txt`.
 - The paper itself (§1, discursive remarks) explicitly compares its sifting range favorably against "the typical `O(exp(c√log x))` or `O(exp(cⁿ√log x))`" ranges "found by the Selberg–Delange method," stating "the bound here subradically dominates the more classical bounds" — i.e., **the author's own framing is that this result reaches a much larger `u`-range than the classical `exp(c√(log x))`-type constructions**, which is qualitatively consistent with covering `u ≍ √(log x log log x)`.
 - Status: **single-author 2026 arXiv preprint, not yet published/peer-reviewed** (per its own footnotes, a companion paper with Alladi as co-author, ref. [1], is "currently preparing" and not yet available). Treat as a candidate/competing recent result, not an established theorem.
 
@@ -232,4 +245,4 @@ Abstract states the paper "generalizes results of Alladi, Dawsey, and Sweeting a
 
 Local-only processing (no budget cost): `pdftotext`, `pdftoppm`, page-image reads, `grep`/`Read` on already-downloaded files — used extensively on `jnt1982.pdf`, `2207.04777.txt` (pre-supplied), and `2601.10636.pdf`.
 
-All downloaded/derived files are in `/private/tmp/claude-501/-Users-klinellc-Documents-hm-ai/2fece2c5-f82f-4ca5-9eb0-6729c3bdf5ec/scratchpad/alladi/`, notably: `jnt1982.pdf`/`.txt` + `page-0{1..6}.png` (Target 1, primary), `2601.10636.pdf`/`.txt` (Target 4a), `core_*.json` (CORE API responses, Targets 1–3 metadata trail).
+All downloaded/derived files are in `a local scratch directory (path redacted)/`, notably: `jnt1982.pdf`/`.txt` + `page-0{1..6}.png` (Target 1, primary), `2601.10636.pdf`/`.txt` (Target 4a), `core_*.json` (CORE API responses, Targets 1–3 metadata trail).

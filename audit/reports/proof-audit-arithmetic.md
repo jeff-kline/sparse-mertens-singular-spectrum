@@ -36,7 +36,7 @@ I found no must-fix proof defect and no must-fix exposition defect. Every step i
 
 ## Exact falsification checks
 
-Script: scratchpad `checks.py`, run with /Users/klinellc/.venvs/claude/bin/python in under 1 s, exact integer or Fraction arithmetic. All checks passed with 0 failures:
+Script: scratchpad `checks.py`, run with an isolated tooling Python environment (local path redacted) in under 1 s, exact integer or Fraction arithmetic. All checks passed with 0 failures:
 
 - (arith:convolutions), both forms, and the tail identity (arith:tail-exact), for x ∈ {97, 500, 1234, 3000}, y ∈ {2, 3, 7, 13, 31}, K ∈ {5, 10, 30}.
 - The least-prime identity (arith:least-prime), the multiplier decomposition (arith:multiplier-decomposition), and the floor identity (arith:floor), for n ∈ {100, 777, 3000}.

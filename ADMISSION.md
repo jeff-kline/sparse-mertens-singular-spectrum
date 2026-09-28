@@ -52,7 +52,7 @@ hypothesis is claimed.
 | Prior work credited near the claims | PASS | `audit/reports/citation-audit.md`; placements fixed per `audit/LEDGER.md` |
 | Public prose plain and process-history free | PASS | Claim audit grep and review |
 | Version and status metadata agree | PASS | README, PDF title page and metadata, `CITATION.cff`, this file |
-| Adversarial checking | PASS | Spectral and arithmetic proof audits (`audit/reports/proof-audit-*.md`), both PASS; all must-fix items resolved (`audit/LEDGER.md`). Process-separated AI audits, not peer review |
+| Adversarial checking | PASS | Spectral and arithmetic proof audits (`audit/reports/proof-audit-*.md`), both PASS; independent review of the candidate (`audit/reports/independent-review.md`) found no mathematical objection; all must-fix items resolved (`audit/LEDGER.md`). AI reviews, not peer review |
 
 **A1 gate:** PASS. Any material claim edit reopens this gate.
 
@@ -61,9 +61,9 @@ hypothesis is claimed.
 | Check | Status | Evidence or residual |
 |---|---|---|
 | Reproduction commands and pinned tools | PASS | `VERIFICATION.md` |
-| Deterministic document build and visual inspection | PASS | Two identical builds; all 39 pages inspected |
+| Deterministic document build and visual inspection | PASS | Clean-checkout build reproduces the recorded PDF hash (`VERIFICATION.md`); all 39 pages inspected |
 | Complete tracked-file manifest | PASS | `MANIFEST.sha256` covers every tracked file except itself |
-| Hygiene: credentials, private paths, placeholders | PASS | Tracked-tree scan and the mechanical release audit |
+| Hygiene: credentials, private paths, placeholders | PASS | Local account and session paths in audit reports redacted 2026-09-27; tracked-tree rescan found none |
 | Correction, withdrawal, supersession policy | PASS | `CORRECTIONS.md` |
 | Machine-readable citation | PASS | `CITATION.cff`, candidate-safe: no DOI, no release date |
 | Immutable semantic tag | FAIL | Not authorized or created |

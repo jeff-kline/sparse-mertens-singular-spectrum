@@ -126,3 +126,23 @@ review.
 - **Fixed**: the checker now skips `*-standalone.tex` wrappers. `make check`
   passes with the recorded counts (39 pages, 11 source files, 121 labels).
   The paper and its PDF were not affected.
+
+## 2026-09-27 — Independent review of the candidate (P1, A1, R1)
+
+- Auditor: an AI agent with a fresh session; it had helped develop the earlier
+  draft, so it is not a cold examiner of that mathematics. Read-only except for
+  its report.
+- Report: `reports/independent-review.md`; reviewed commit `96fe778`.
+- Verdicts: Lemma 3.2, Theorem 3.4, Theorem 4.7 PASS; predecessor comparison
+  PASS; prior-art dispositions PARTIAL; reader-facing claims PASS; release
+  mechanics FAIL as-is. It recommended not tagging `96fe778`.
+
+| Finding | Severity | Disposition |
+|---|---|---|
+| R1: a clean checkout's two-pass `make paper` leaves unsettled references; `make check` fails and the PDF hash differs | must-fix | **Fixed**: four passes. A fresh `git archive` extraction now reproduces `bf477ddd…b915` with no rerun warning |
+| R2: transcription errors in `alladi-source-extraction.md` (saddle parameter, missing `μ(n)`, spurious `1/p`) | must-fix | **Fixed**: dated erratum prepended; original report preserved. Each error confirmed against the paper's own identities |
+| R3: local account and session paths in five audit reports; the hygiene PASS overstated | must-fix | **Fixed**: paths redacted, public URLs kept; tracked-tree rescan clean |
+| R4: `RELEASE-PLAN.md` ownership rows stale | must-fix | **Fixed**: rows now match `ADMISSION.md` |
+| R4: the claim-lane entry says a singular-value definition was added to the README, but it had been removed during the Introduction rewrite | must-fix | **Corrected**: the earlier “Fixed” was false as of `96fe778`; the definition is now back in “Main results” |
+| README readability (define squarefree, restate item 3, name the dominance condition, identify `A_n`, drop the unexplained `K`) | optional | **Fixed** |
+| Drop the Introduction's no-improvement sentence | optional | Kept: it is part of the abstract, which the Introduction restates |

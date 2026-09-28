@@ -31,8 +31,7 @@ The Makefile fixes `SOURCE_DATE_EPOCH=1790467200` (2026-09-27 00:00 UTC) and
 
 ```sh
 python3 -m venv .venv
-make paper    # two pdfLaTeX passes
-make paper    # repeated; output unchanged
+make paper    # four pdfLaTeX passes, enough for a clean checkout to settle
 make check
 shasum -a 256 paper/main.pdf
 shasum -a 256 -c MANIFEST.sha256
@@ -67,8 +66,12 @@ paper/main.pdf  39 pages
 SHA-256 bf477dddf4d5d65ad5f26be42f2de4c4e37dda3dabe20b5f5a34152fb420b915
 ```
 
-Two consecutive builds from the same source produced this identical hash. A
-different TeX distribution may produce a different but equivalent PDF.
+This hash was reproduced from a fresh `git archive HEAD` extraction with a
+single `make paper`, and again by rebuilding in the working tree. An earlier
+two-pass recipe left unsettled cross-references in a clean checkout (a
+different PDF, and `make check` failed); only warm rebuilds had matched. The
+four-pass recipe fixes this. A different TeX distribution may produce a
+different but equivalent PDF.
 
 ## Visual inspection
 

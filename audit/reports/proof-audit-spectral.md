@@ -44,7 +44,7 @@ I re-derived every statement in the lane from the definitions and found no proof
 
 ## Numerical falsification attempts (none falsified; not proof)
 
-Script: `/private/tmp/claude-501/-Users-klinellc-Documents-hm-ai/2fece2c5-f82f-4ca5-9eb0-6729c3bdf5ec/scratchpad/audit_spec.py` (plus `audit2.py`), run with `~/.venvs/claude/bin/python`; 871 checks, 0 failures; about 73 s.
+Script: `scratch script `audit_spec.py` (local path redacted; not included in this release)` (plus `audit2.py`), run with `~/.venvs/claude/bin/python`; 871 checks, 0 failures; about 73 s.
 - Exact integer checks for $n=2..59$, 97, 210, 331: $A C=I$ with the closed-form $C$; $Ce_1=\mu$; the $w_n$ coordinates against direct $R(n/j,P^+(j))$; the $W_n^2$ identity; $B\,\operatorname{adj}=\operatorname{adj}B=M(n)I$ with adj $=MC-\mu w^T$ (including $M(2)=M(39)=M(40)=M(58)=0$); $\det B=M(n)$ (exact Fraction elimination for $n\le12$); the degrees, $\sum d_j=Q-1$, $S^TS=\operatorname{diag}(d)$, and the Frobenius and trace identities.
 - Floating SVD for $n\in\{2..8,10,12,30,64,100,210,500,997,1000,1500,2000\}$ and the zero-Mertens indices 39, 40, 58, 65, 93, 101, 1866, 1929, 1938. Results:
   - Unit, above-one and below-one counts are exactly $(k+1,k,n-2k-1)$ for all $n\ge4$ tested, and $(k,k,n-2k)$ for $A$. The minimum distance of a nonunit value from 1 is about 0.16-0.21, so the result is not a tolerance artefact.

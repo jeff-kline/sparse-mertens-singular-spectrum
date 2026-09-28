@@ -7,7 +7,7 @@
 pre-existing, unrelated in-progress work by another process and were left
 untouched (read-only audit; no files staged, committed, or edited other than
 this report).
-**Auditor:** cold read of README.md, paper/main.tex, paper/sections/{introduction,discussion,spectral,arithmetic,volumes,geometry}.tex, CITATION.cff, CORRECTIONS.md, audit/RELEASE-PLAN.md, paper/main.pdf (via `pdftotext`), and the predecessor release at `/Users/klinellc/Documents/sparse-mertens-singular-values_release` (abstract, Theorem `thm:main`, Remark `rem:shape`, Open Problems).
+**Auditor:** cold read of README.md, paper/main.tex, paper/sections/{introduction,discussion,spectral,arithmetic,volumes,geometry}.tex, CITATION.cff, CORRECTIONS.md, audit/RELEASE-PLAN.md, paper/main.pdf (via `pdftotext`), and the predecessor release at `the sparse-mertens-singular-values v0.1.0 checkout (local path redacted)` (abstract, Theorem `thm:main`, Remark `rem:shape`, Open Problems).
 **Standard applied:** the public research standard at
 https://jeff-kline.github.io/posts/research-program/index.html (fetched live).
 **Scope note:** per instruction, AI-agent process separation is treated below
