@@ -5,3 +5,6 @@ paper/*.log
 paper/*.out
 paper/*.toc
 audit/build/
+paper/figures/*.aux
+paper/figures/*.log
+paper/figures/redheffer-comparison-standalone.pdf

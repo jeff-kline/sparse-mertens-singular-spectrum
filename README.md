@@ -13,57 +13,34 @@ The paper is [paper/main.pdf](paper/main.pdf); its source is
 
 ## Introduction
 
-The Mertens function `M(n) = μ(1) + μ(2) + ... + μ(n)` adds up the Möbius
-function μ. That function is 0 at integers with a repeated prime factor, and
-otherwise +1 or −1 as the number of prime factors is even or odd. How fast
-`M(n)` can grow is a central question in number theory: `M(n) = o(n)` is
-equivalent to the prime number theorem, and `M(n) = O(n^(1/2+ε))` for every
-ε > 0 is equivalent to the Riemann hypothesis.
-
-In 1977 Redheffer found a matrix of zeros and ones whose determinant is
-`M(n)`. That turns a question about a sum into a question about a matrix. The
-singular values of a matrix measure how much it stretches vectors in different
-directions, and their product is the absolute value of the determinant. So one
-can ask which singular values carry the size of `M(n)`. Redheffer's matrix has
-about `n log n` nonzero entries. Kline (2019) found a much sparser matrix with
-the same determinant, about `2.61n` nonzero entries, and this paper studies it.
-
-The sparse matrix is built from simple parent links between integers. A
-squarefree integer has no repeated prime factor. Its parent is obtained by
-removing its largest prime factor. For example, among the integers from 1 to 6,
-the links are:
+This paper studies the n × n matrix `B_n` formed by placing ones on the
+diagonal and at `(i, i/P⁺(i))` for each squarefree `i > 1`, then replacing the
+first row by ones; all other entries are zero. Here `P⁺(i)` is the largest
+prime factor of `i`, and `i/P⁺(i)` is called the parent of `i`; these parent
+links form a tree on the squarefree integers. The matrix was introduced by
+Kline (2019) and satisfies
 
 ```text
-1 ──→ 2 ──→ 6       4 (isolated)
-├───→ 3
-└───→ 5
+det B_n = M(n) = μ(1) + μ(2) + ... + μ(n),
 ```
 
-Here 6 has parent 2 because 6 = 2 × 3 and its largest prime factor is 3. The
-integer 4 is not squarefree, so it has no parent link. To build the matrix,
-start with ones on the diagonal and put a one in row i, column j for every
-arrow j → i. Then replace the first row by ones. With rows and columns ordered
-1 through 6, the result is:
+where μ is the Möbius function. Redheffer's matrix has the same determinant
+but many more nonzero entries:
 
-```text
-      1 2 3 4 5 6
-    ┌             ┐
-  1 │ 1 1 1 1 1 1 │
-  2 │ 1 1 0 0 0 0 │
-  3 │ 1 0 1 0 0 0 │
-  4 │ 0 0 0 1 0 0 │
-  5 │ 1 0 0 0 1 0 │
-  6 │ 0 1 0 0 0 1 │
-    └             ┘
-```
+![Nonzero entries of Redheffer's matrix (transposed) and of B_n at n = 120](paper/figures/redheffer-comparison.png)
 
-Call the n × n version `B_n`; Kline (2019) writes it as a calligraphic R. Its
-determinant is `M(n)`. At n = 120 it has 313 nonzero entries against 721 for
-Redheffer's matrix, and the paper shows the two side by side.
+*Nonzero entries at n = 120. Orange marks the first row, gray the remaining
+diagonal, green the parent links kept in `B_n`, and blue the other divisor
+entries present only in Redheffer's matrix.*
 
-The paper describes all of the singular values of `B_n`. Almost all of them
-equal one; the large ones are set by counting primes; the small ones have fixed
-limits. Only the smallest one carries `M(n)`.
+The paper finds how many singular values of `B_n` equal one, compares the large
+ones with square roots of parent degrees, and gives limits for the small ones
+through an explicit compact operator, including when the matrix is singular.
+The smallest singular value is the exception: it depends on `M(n)` and on the
+norm of a vector of restricted Möbius sums. Classical estimates give the size
+of that norm, moments and support-constrained sums of the restricted sums, and
+products of singular values. No stronger estimate for `M(n)` or for prime
+counting follows.
 
 ## Main results
 
@@ -178,7 +155,8 @@ shasum -a 256 -c MANIFEST.sha256
 
 `make check` checks the document's consistency; it does not check proofs. The
 Redheffer comparison figure is exact vector source; regenerate it with
-`.venv/bin/python paper/figures/build_comparison.py`.
+`.venv/bin/python paper/figures/build_comparison.py`, and its README image
+with `make readme-figure`.
 
 ## Repository contents
 
