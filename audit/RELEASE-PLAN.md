@@ -58,11 +58,11 @@ inspection of every page, complete `MANIFEST.sha256`, `CITATION.cff`,
 |---|---|---|
 | Local edits, builds, audits, local commits | Agent (root integrates; auditors read-only) | authorized |
 | Create private GitHub repository `jeff-kline/sparse-mertens-singular-spectrum` and push `main` | Author authorization, as recorded in `ADMISSION.md` | done 2026-09-27 |
-| Make repository public | Author approval required | pending |
-| Further default-branch updates | Scope set for each exact candidate | pending |
-| Annotated tag `v0.1.0` and push | Author approval required (freeze bundle) | not authorized |
-| GitHub Release | Author approval required (freeze bundle) | not authorized |
-| Zenodo repository enablement / DOI | Author, in the Zenodo portal; agent does not authenticate | not started |
+| Make repository public | Author authorization | done 2026-09-27 |
+| Further default-branch updates | Author authorization per candidate | records commit before the tag authorized 2026-09-27 |
+| Annotated tag `v0.1.0` and push | Author authorization (freeze bundle) | authorized 2026-09-27 |
+| GitHub Release | Author authorization (freeze bundle) | authorized 2026-09-27 |
+| Zenodo repository enablement / DOI | Author, in the Zenodo portal; agent does not authenticate | enabled 2026-09-27 |
 | Public-site listing and living-metadata push | Author approval required (admission bundle) | not authorized |
 | Correction note in `sparse-mertens-singular-values` pointing here | Author approval required | proposed follow-on |
 

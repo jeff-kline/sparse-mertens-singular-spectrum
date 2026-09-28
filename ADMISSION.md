@@ -78,9 +78,9 @@ hypothesis is claimed.
 | Action | Owner | Status |
 |---|---|---|
 | Create repository `jeff-kline/sparse-mertens-singular-spectrum` (private) and push `main` | Author authorization | done 2026-09-27 |
-| Make the repository public | Author authorization | pending |
-| Annotated tag `v0.1.0`, push, GitHub Release | Author authorization (freeze bundle) | pending |
-| Enable the repository in Zenodo before the Release | Author, in the Zenodo portal | pending |
+| Make the repository public; enable secret scanning and push protection | Author authorization | done 2026-09-27 |
+| Annotated tag `v0.1.0`, push, GitHub Release | Author authorization (freeze bundle) | authorized 2026-09-27 |
+| Enable the repository in Zenodo before the Release | Author, in the Zenodo portal | done 2026-09-27; Zenodo release webhook present |
 | Public-site listing and living-metadata update | Author authorization (admission bundle) | pending |
 
 ## Archive route
